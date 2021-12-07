@@ -17,5 +17,7 @@ public class Main {
 
         System.out.println(pierwszy.toString());
         System.out.println(drugi.toString());
+
+
     }
 }

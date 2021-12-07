@@ -9,7 +9,7 @@ public class Ulamek {
         this.licznik = licznik;
         this.mianownik = mianownik;
     }
-
+    @Override
     public String toString() {
         return "Ulamek{" +
                 "licznik=" + licznik +

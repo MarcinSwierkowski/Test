@@ -1,4 +1,4 @@
-package Zgadywanka;
+package pl.sda.Zgadywanka;
 
 import java.util.Scanner;
 
