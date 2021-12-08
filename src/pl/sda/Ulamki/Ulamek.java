@@ -1,4 +1,4 @@
-package pl.sda.myproject;
+package pl.sda.Ulamki;
 
 public class Ulamek {
     private int licznik;
