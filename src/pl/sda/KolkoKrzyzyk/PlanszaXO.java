@@ -21,7 +21,7 @@ public class PlanszaXO {
             {1, 5, 9},
             {3, 5, 7}};
 
-    public boolean czyWygral(char znak, int[][] wygrane) {
+    private boolean czyWygral(char znak, int[][] wygrane) {
         boolean wygral = false;
         for (int i = 0; i < 8; i++) {
             int count = 0;
@@ -39,7 +39,7 @@ public class PlanszaXO {
 
     }
 
-    public void wyswietlPlansze() {
+    private void wyswietlPlansze() {
         System.out.println("+-------+");
         for (int i = 0; i < plansza.length; i++) {
             System.out.print("|");
@@ -61,7 +61,7 @@ public class PlanszaXO {
         }
     }
 
-    public void ktoWygral() {
+    private void ktoWygral() {
         switch (winner) {
             case 0:
                 System.out.println("Remis nikt nie wygrał.");
