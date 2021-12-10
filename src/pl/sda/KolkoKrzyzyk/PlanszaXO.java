@@ -78,6 +78,7 @@ public class PlanszaXO {
     public void startGame() {
         System.out.println("Rozpoczyna X ");
         char znak;
+        int poprawnePole;
         int ruch =0;
         do {
             if(ruch%2==0)
@@ -85,7 +86,12 @@ public class PlanszaXO {
                 else znak ='O';
 
             wyswietlPlansze();
-            postawZnak(wybierzPole(znak),znak);
+            do {
+                poprawnePole = wybierzPole(znak);
+
+            }while (czyPoleZajete(poprawnePole));
+
+            postawZnak(poprawnePole,znak);
             ruch++;
 
         } while (!czyWygral('X', wygrane) && !czyWygral('O', wygrane) && ruch < 9);
@@ -95,6 +101,14 @@ public class PlanszaXO {
 
         public void postawZnak ( int numer, char znak){
             plansza[(numer - 1) / 3][(numer - 1) % 3] = znak;
+        }
+
+    public boolean czyPoleZajete ( int numer){
+        if((plansza[(numer - 1) / 3][(numer - 1) % 3] !='X') && (plansza[(numer - 1) / 3][(numer - 1) % 3] !='O'))
+            return false;
+        else {
+            System.out.println("Pole zajęte podaj wolne pole.");
+            return true;}
         }
 
         public int wybierzPole ( char znak){
