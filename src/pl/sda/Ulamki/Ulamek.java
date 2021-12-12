@@ -11,52 +11,33 @@ public class Ulamek {
     }
     @Override
     public String toString() {
-        return "Ulamek{" +
-                "licznik=" + licznik +
-                ", mianownik=" + mianownik +
-                '}';
+        return (licznik + "/" + mianownik);
     }
 
     public Ulamek dodajUlamki(Ulamek ulamek) {
-        Ulamek wynik = new Ulamek(0, 0);
         if (this.mianownik == ulamek.mianownik) {
-            wynik.licznik = this.licznik + ulamek.licznik;
-            wynik.mianownik = this.mianownik;
-            return wynik;
+            return new Ulamek(this.licznik + ulamek.licznik,this.mianownik);
         } else {
             //Do Zrobienia : Sprowadzić do wspólnego mianownika.
-            wynik.licznik = this.licznik * ulamek.mianownik + this.mianownik * ulamek.licznik;
-            wynik.mianownik = this.mianownik * ulamek.mianownik;
-            return wynik;
+            return new Ulamek(this.licznik * ulamek.mianownik + this.mianownik * ulamek.licznik,this.mianownik * ulamek.mianownik);
         }
     }
 
     public Ulamek odejmijUlamki(Ulamek ulamek) {
-        Ulamek wynik = new Ulamek(0, 0);
         if (this.mianownik == ulamek.mianownik) {
-            wynik.licznik = this.licznik - ulamek.licznik;
-            wynik.mianownik = this.mianownik;
-            return wynik;
+            return new Ulamek(this.licznik - ulamek.licznik,this.mianownik);
         } else {
             //Do Zrobienia : Sprowadzić do wspólnego mianownika.
-            wynik.licznik = this.licznik * ulamek.mianownik - this.mianownik * ulamek.licznik;
-            wynik.mianownik = this.mianownik * ulamek.mianownik;
-            return wynik;
+            return new Ulamek(this.licznik * ulamek.mianownik - this.mianownik * ulamek.licznik,this.mianownik * ulamek.mianownik);
         }
     }
 
     public Ulamek pomnozUlamki(Ulamek ulamek) {
-        Ulamek wynik = new Ulamek(0, 0);
-        wynik.licznik = this.licznik * ulamek.licznik;
-        wynik.mianownik = this.mianownik * ulamek.mianownik;
-        return wynik;
+        return new Ulamek(this.licznik * ulamek.licznik,this.mianownik * ulamek.mianownik);
     }
 
     public Ulamek podzielUlamki(Ulamek ulamek) {
-        Ulamek wynik = new Ulamek(0, 0);
-        wynik.licznik = this.licznik * ulamek.mianownik;
-        wynik.mianownik = this.mianownik * ulamek.licznik;
-        return wynik;
+        return new Ulamek(this.licznik * ulamek.mianownik,this.mianownik * ulamek.licznik);
     }
 
 }

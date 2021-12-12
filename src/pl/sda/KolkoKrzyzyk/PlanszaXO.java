@@ -38,6 +38,7 @@ public class PlanszaXO {
         return wygral;
 
     }
+    // mozna by dodać kolory dla X i O zeby nie zlewały się z 1,2,3...,9
 
     private void wyswietlPlansze() {
         System.out.println("+-------+");

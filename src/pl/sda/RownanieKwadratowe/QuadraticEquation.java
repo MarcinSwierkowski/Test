@@ -10,7 +10,7 @@ public class QuadraticEquation {
         this.b = b;
         this.c = c;
 
-        // zrobic obsługe błedu a nie moze być zerem
+        // zrobic obsługe błedu a!=0 nie moze być zerem
     }
 
     private double policzDelte() {
