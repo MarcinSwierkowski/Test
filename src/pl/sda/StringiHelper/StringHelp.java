@@ -6,13 +6,13 @@ import java.util.regex.Pattern;
 
 public class StringHelp {
 
-    String text;
+    private String text;
 
     public StringHelp(String text) {
         this.text = text;
     }
 
-    private void szyfrCezara(int offset) {
+    public void szyfrCezara(int offset) {
 
         int startDuze = 65;
         int startMale = 97;
@@ -33,7 +33,7 @@ public class StringHelp {
         System.out.println();
     }
 
-    private void sprawdzNawiasy() {
+    public void sprawdzNawiasy() {
         int ileOtwartych = 0;
         int ileZamknietych = 0;
         boolean pierwszyOtwarty = false;
@@ -74,11 +74,11 @@ public class StringHelp {
         } else System.out.println("Niepoprawne sparowanie nawiasów");
     }
 
-    public void odwrocStringa() {
+    /*public void odwrocStringa() {
         if (text.length() == 0) return;
         System.out.print(text.charAt(text.length() - 1));
         odwrocStringa(text.substring(0, text.length() - 1));
-    }
+    }*/
 
     //  PLAN metody liczenie wyrazów V2 Matcher
     //   robie toLower
@@ -92,7 +92,7 @@ public class StringHelp {
     //   usuwam ze stringa wejsciowego słowo1 koryguje stringa
     //   przepisuje nowy string na string do szukania i robie szukanie słowa 2 itd az do ostatniego słowa
 
-    private void wypiszStatystykeTextuWyrazyV2() {
+    public void wypiszStatystykeTextuWyrazyV2() {
 
         String bezSmieci = text.toLowerCase().replaceAll("[,|.|:|;]", "");
         String bezLiter = bezSmieci.replaceAll("\\s[a-zA-Z]\\s", " ");
@@ -118,13 +118,13 @@ public class StringHelp {
 
     }
 
-    private void usunWgRegex(String regex, String zamien) {
+    public void usunWgRegex(String regex, String zamien) {
 
         System.out.println(text);
         System.out.println(text.replaceAll(regex, zamien));
     }
 
-    private void zlacz(String text1, String text2) {
+    public void zlacz(String text1, String text2) {
         System.out.println(text1 + text2);
         System.out.println(text1.trim().substring(2, text1.trim().length()) + text2.trim().substring(0, text2.trim().length() - 2));
     }
@@ -142,7 +142,7 @@ public class StringHelp {
     // rozmiar tablicy narzuca split ze spacja rozdzielającą
 
 
-    private void wypiszStatystykeTextuWyrazyV1() {
+   public void wypiszStatystykeTextuWyrazyV1() {
 
         String bezSmieci = text.toLowerCase().replaceAll("[,|.|:|;]", "");
         String bezLiter = bezSmieci.replaceAll("\\s[a-zA-Z]\\s", " ");
@@ -161,7 +161,7 @@ public class StringHelp {
         wypiszTablicePionowo(podzielony, tablicaIle);
     }
 
-    private static void znajdzDuplikat(String[] tablicawyrazy, int[] tablica) {
+    public void znajdzDuplikat(String[] tablicawyrazy, int[] tablica) {
         for (int i = 0; i < tablica.length; i++) {
             for (int j = i + 1; j < tablica.length; j++) {
                 if (tablicawyrazy[i].equals(tablicawyrazy[j]) && tablica[i] == tablica[j]) {
@@ -172,7 +172,7 @@ public class StringHelp {
     }
 
 
-    private static void wypiszTablicePionowo(String[] tab1, int[] tab2) {
+    public void wypiszTablicePionowo(String[] tab1, int[] tab2) {
         for (int i = 0; i < tab1.length; i++) {
             if (tab2[i] != 0) {
                 System.out.println(tab1[i] + " - " + tab2[i]);
@@ -180,7 +180,7 @@ public class StringHelp {
         }
     }
 
-    private void wypiszStatystykeTextuLitery() {
+    public void wypiszStatystykeTextuLitery() {
 
         int[] tablica = new int[256];
         int startDuze = 65;
@@ -198,7 +198,7 @@ public class StringHelp {
 
     }
 
-    private static void wypiszTablice(int start, int ileLiter, int[] table) {
+    public void wypiszTablice(int start, int ileLiter, int[] table) {
         for (int i = start; i < ileLiter + start; i++) {
             if (table[i] != 0) {
                 System.out.print((char) i + "\t");
@@ -213,13 +213,6 @@ public class StringHelp {
         System.out.println();
     }
 
-    private static String wczytajStringa() {
-        Scanner myScanner = new Scanner(System.in);
-        System.out.println("Podaj stringa : ");
-        return myScanner.nextLine();
-
-
-    }
 }
 
 
