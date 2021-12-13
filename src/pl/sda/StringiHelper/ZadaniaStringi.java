@@ -26,14 +26,20 @@ public class ZadaniaStringi {
         String regexWyrazDuzejLitery = "[A-Z][a-zóńąęłżźć]+";
         String regexKoniecTextu = ".$";
 
+        String liczba ="1234567890";
 
-        StringHelp text = new StringHelp(testowy);
 
-        text.wypiszStatystykeTextuLitery();
+        //StringHelp text = new StringHelp(testowy);
+
+        //text.wypiszStatystykeTextuLitery();
 
         //text.wypiszStatystykeTextuWyrazyV1();
 
-        text.wypiszStatystykeTextuWyrazyV2();
+        //text.wypiszStatystykeTextuWyrazyV2();
+
+        StringHelp stringLiczba = new StringHelp(liczba);
+
+        stringLiczba.policzElementyStringa();
 
         //zlacz(testowy3,testowy4);
         //usunWgRegex(testowy3,regexSamogloski," ");

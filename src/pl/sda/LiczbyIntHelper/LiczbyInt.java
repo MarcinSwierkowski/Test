@@ -29,5 +29,14 @@ public class LiczbyInt {
             }
             return stringBuilder.toString();
         }
+
+        public boolean pakowaniePaczek(int iloscMalych , int pojemnoscMalych, int iloscDuzych, int pojemnoscDuzych){
+            if (iloscMalych*pojemnoscMalych+iloscDuzych*pojemnoscDuzych>liczba)
+            return true;
+            else return false;
+        }
+
+
+
     }
 

@@ -142,7 +142,7 @@ public class StringHelp {
     // rozmiar tablicy narzuca split ze spacja rozdzielającą
 
 
-   public void wypiszStatystykeTextuWyrazyV1() {
+    public void wypiszStatystykeTextuWyrazyV1() {
 
         String bezSmieci = text.toLowerCase().replaceAll("[,|.|:|;]", "");
         String bezLiter = bezSmieci.replaceAll("\\s[a-zA-Z]\\s", " ");
@@ -211,6 +211,15 @@ public class StringHelp {
             }
         }
         System.out.println();
+    }
+
+    public void policzElementyStringa() {
+        int suma = 0;
+        int asciStart = 48;
+        for (int i = 0; i < text.length(); i++) {
+            suma = suma + (text.charAt(i) - asciStart);
+        }
+        System.out.println(suma);
     }
 
 }
