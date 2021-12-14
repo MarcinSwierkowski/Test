@@ -1,6 +1,5 @@
 package pl.sda.Time;
 
-import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -20,6 +19,15 @@ public class ZadaniaTime {
 
         LocalDate urodziny = DataCzaspodajDateUrodzenia("Podaj datę urodzenia w formacie yyyy-mm-dd ");
         Data dataUrodzin = new Data(urodziny);
+
+        System.out.println(dataUrodzin.getData());
+
+        Data dataUrodzin2 = new Data();
+
+        dataUrodzin2.DataCzaspodajDateUrodzenia1("Podaj datę urodzenia w formacie yyyy-mm-dd ");
+
+        System.out.println(dataUrodzin2.getData());
+
     }
 
     private static LocalDate DataCzaspodajDateUrodzenia(String pytanie) {

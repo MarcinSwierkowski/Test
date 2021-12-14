@@ -2,6 +2,7 @@ package pl.sda.Time;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Scanner;
 
 public class Data {
 
@@ -9,6 +10,9 @@ public class Data {
 
     public Data(LocalDate data) {
         this.data = data;
+    }
+
+    public Data() {
     }
 
     public LocalDate getData() {
@@ -26,4 +30,10 @@ public class Data {
     }
 
 
+    public void  DataCzaspodajDateUrodzenia1(String pytanie) {
+        System.out.println(pytanie);
+        Scanner scanner = new Scanner(System.in);
+        String data = scanner.nextLine();
+        this.data = this.data.parse(data);
+    }
 }
