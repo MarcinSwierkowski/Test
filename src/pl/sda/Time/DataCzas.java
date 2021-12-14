@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 
 public class DataCzas {
 
-    private LocalDate data;
+    private LocalDate dataCzas;
 
-    public DataCzas(LocalDate data) {
-        this.data = data;
+    public DataCzas(LocalDate dataCzas) {
+        this.dataCzas = dataCzas;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDataCzas() {
+        return dataCzas;
     }
 }
