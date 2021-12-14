@@ -28,6 +28,10 @@ public class ZadaniaTime {
 
         System.out.println(dataUrodzin2.getData());
 
+        //wiek=wiekodpowiedz("Czy palisz papierosy 1-TAK / 0 -NIE : ");
+
+
+
     }
 
     private static LocalDate DataCzaspodajDateUrodzenia(String pytanie) {
@@ -37,6 +41,16 @@ public class ZadaniaTime {
         LocalDate localDate = LocalDate.parse(data);
         return localDate;
     }
+
+
+    private static boolean odpowiedz(String pytanie) {
+        System.out.println(pytanie);
+        Scanner scanner = new Scanner(System.in);
+        int odpowiedz = scanner.nextInt();
+        if (odpowiedz==1) return true;
+        else return false;
+    }
+
 
 
 }
