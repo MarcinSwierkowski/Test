@@ -2,16 +2,26 @@ package pl.sda.Time;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 public class DataCzas {
 
-    private LocalDate dataCzas;
+public void helper(){
 
-    public DataCzas(LocalDate dataCzas) {
-        this.dataCzas = dataCzas;
-    }
+    LocalDateTime localDateTime1 = LocalDateTime.now();
+    LocalDateTime localDateTime2 = LocalDateTime.parse("2015-05-30T18:54:23");
 
-    public LocalDate getDataCzas() {
-        return dataCzas;
-    }
+    System.out.println("LocalDateTime #1: " + localDateTime1);
+    System.out.println("LocalDateTime #2: " + localDateTime2);
+
+    // modyfikacja
+    Period oneYearPeriod = Period.ofYears(1);
+    LocalDateTime localDateTime1AfterYear = localDateTime1.plus(oneYearPeriod);
+    System.out.println("Data i czas 'za rok': " + localDateTime1AfterYear);
+
+    LocalDateTime localDateTime1Minus30Months = localDateTime1.minusMonths(30);
+    System.out.println("Data i czas 'sprzed 30 miesięcy': " + localDateTime1Minus30Months);
+
+}
+
 }
