@@ -1,6 +1,5 @@
 package pl.sda.Time;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -13,16 +12,21 @@ public class ZadaniaTime {
 
     public static void main(String[] args) {
 
+        LocalDate teraz = LocalDate.now();
+        LocalDate zajeciaPoSwietach = LocalDate.of(2022,1,10);
+        LocalDate zajeciaPoSwietach2 = LocalDate.parse("2022-01-10");
+
+        Data nowa = new Data();
+
+        nowa.roznicaData(teraz,zajeciaPoSwietach);
+        nowa.roznicaData(teraz,zajeciaPoSwietach2);
+
+        LocalTime terazCzas = LocalTime.now();
+        System.out.println(terazCzas);
 
 
 
 
-
-//       Data teraz = new Data(LocalDate.now());
-//        Data zajeciaPoSwietach = new Data(LocalDate.of(2022,1,10));
-//
-//
-//        teraz.roznicaData(zajeciaPoSwietach);
 //
 //
 //        LocalDate urodziny = DataCzaspodajDateUrodzenia("Podaj datę urodzenia w formacie yyyy-mm-dd ");
