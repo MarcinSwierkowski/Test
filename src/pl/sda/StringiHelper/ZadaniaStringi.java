@@ -53,7 +53,10 @@ public class ZadaniaStringi {
 
         //oneTwo("1234567890");
 
-        changeXY("xhixhxihihhhih");
+        //changeXY("xhixhxihihhhih");
+
+        int[] score = {3, 4, 5, 1, 2, 3};
+        scoresAverage(score);
 
     }
 
@@ -180,6 +183,75 @@ public class ZadaniaStringi {
         if(str.substring(str.length()-2,str.length()).equals("pi")) return changePi(str.substring(0,str.length()-2))+"3.14";
         else return changePi(str.substring(0,str.length()-1))+str.substring(str.length()-1,str.length());
     }
+
+
+    public static String noX(String str) {
+        if(str.length()<1) return str;
+        if(str.substring(str.length()-1,str.length()).equals("x")) return noX(str.substring(0,str.length()-1))+"";
+        else return noX(str.substring(0,str.length()-1))+str.substring(str.length()-1,str.length());
+    }
+
+
+
+
+    public static boolean scoresIncreasing(int[] scores) {
+        boolean result = true;
+        for(int i=0;i<scores.length-1;i++)
+            if(scores[i]<=scores[i+1]) result=true;
+            else return false;
+            return result;
+    }
+
+    public static boolean scores100(int[] scores) {
+        boolean result = true;
+        for(int i=0;i<scores.length-1;i++)
+            if(scores[i]==100 && scores[i+1]==100) return true;
+            else result = false;
+        return result;
+    }
+
+
+    public static boolean scoresClump(int[] scores) {
+        boolean result = true;
+        for(int i=0;i<scores.length-2;i++)
+            if(scores[i+1]-scores[i]<=2 && scores[i+2]-scores[i+1]<=2 && scores[i+2]-scores[i]<=2) return true;
+            else result = false;
+        return result;
+    }
+
+    public static int scoresAverage(int[] scores) {
+        int pierwsza = average(scores,0,scores.length/2-1);
+        int druga = average(scores,scores.length/2,scores.length-1);
+        if(pierwsza>druga) return pierwsza;
+        else return druga;
+
+    }
+
+    public static int average(int[] scores, int start, int end){
+        int suma=0;
+        for(int i = start;i<=end;i++)
+            suma=suma+scores[i];
+        return suma/(end-start+1);
+    }
+
+
+    public static int wordsCount(String[] words, int len) {
+        int sum=0;
+        for(int i=0;i<words.length;i++){
+            if(words[i].length()==len) sum++;
+        }
+        return sum;
+    }
+
+
+    public static String[] wordsFront(String[] words, int n) {
+        String[] newWords = new String[n];
+        for(int i =0;i<n;i++)
+        newWords[i]=words[i];
+    return newWords;
+    }
+
+
 
 }
 
