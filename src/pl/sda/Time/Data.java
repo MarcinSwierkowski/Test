@@ -83,8 +83,6 @@ public class Data {
         System.out.println("Aktualna data minus okres 2: " + dateMinusPeriod2);
 
 
-
-
     }
 
 }

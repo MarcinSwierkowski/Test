@@ -1,49 +1,31 @@
 package pl.sda.Time;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Period;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ZadaniaTime {
 
     public static void main(String[] args) {
 
-        LocalDate teraz = LocalDate.now();
-        LocalDate zajeciaPoSwietach = LocalDate.of(2022,1,10);
-        LocalDate zajeciaPoSwietach2 = LocalDate.parse("2022-01-10");
-
-        Data nowa = new Data();
-
-        nowa.roznicaData(teraz,zajeciaPoSwietach);
-        nowa.roznicaData(teraz,zajeciaPoSwietach2);
-
-        LocalTime terazCzas = LocalTime.now();
-        System.out.println(terazCzas);
+        int ileMiesiecy;
 
 
+        LocalDate urodziny = LocalDate.parse("1972-11-01");
 
+        int c = pytanie("Kobieta czy mężczyzna ? (k/m) :",10,1);
+        System.out.println(c);
+        int a = pytanie("Czy palisz papierosy ? (t/n) :",10,5,-1);
+        System.out.println(a);
+        int b = pytanie("Uprawiasz sport ? (t/n) :",10,4,1);
+        System.out.println(b);
 
-//
-//
-//        LocalDate urodziny = DataCzaspodajDateUrodzenia("Podaj datę urodzenia w formacie yyyy-mm-dd ");
-//        Data dataUrodzin = new Data(urodziny);
-//
-//        System.out.println(dataUrodzin.getData());
-//
-//        Data dataUrodzin2 = new Data();
-//
-//        dataUrodzin2.DataCzaspodajDateUrodzenia1("Podaj datę urodzenia w formacie yyyy-mm-dd ");
-//
-//        System.out.println(dataUrodzin2.getData());
-//
-//        wiek=wiekodpowiedz("Czy palisz papierosy 1-TAK / 0 -NIE : ");
+        int startowyWiek = 60*12;
+        int ileJeszczeMiesiecy = (a + b + c)*12;
 
-
-
+        System.out.println("Pożyjesz :"+(startowyWiek+ileJeszczeMiesiecy)/12);
     }
 
     private static LocalDate DataCzaspodajDateUrodzenia(String pytanie) {
@@ -55,14 +37,28 @@ public class ZadaniaTime {
     }
 
 
-    private static boolean odpowiedz(String pytanie) {
+    private static int pytanie(String pytanie,int waga, int random, int pozytywny) {
+
+        Random rand = new Random();
+        int wartosc = rand.nextInt(2*random)-random;
         System.out.println(pytanie);
         Scanner scanner = new Scanner(System.in);
-        int odpowiedz = scanner.nextInt();
-        if (odpowiedz==1) return true;
-        else return false;
+        String odpowiedz = scanner.nextLine();
+        if (odpowiedz.equals("t")){
+            return (waga+wartosc)*pozytywny;
+        }
+        else return 0;
     }
 
+    private static int pytanie(String pytanie,int waga, int pozytywny) {
 
+        System.out.println(pytanie);
+        Scanner scanner = new Scanner(System.in);
+        String odpowiedz = scanner.nextLine();
+        if (odpowiedz.equals("k")){
+            return 10;
+        }
+        else return 0;
+    }
 
 }
