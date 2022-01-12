@@ -20,5 +20,13 @@ public class Main {
         Telefon telefon2 = new Telefon("SN5534599","Samsung S9",350,Kolor.SZARY,"Android 12",2048,6000,300);
 
 
+        Koszyk koszyk = new Koszyk();
+
+        koszyk.dodajDoKoszyka(radio1);
+        koszyk.dodajDoKoszyka(telefon1);
+        koszyk.dodajDoKoszyka(telefon2);
+
+        koszyk.wydrukujKoszyk();
+
     }
 }
