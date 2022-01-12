@@ -8,14 +8,16 @@ public class Telefon extends UrzadzenieElektroniczne implements Video {
     public Telefon() {
     }
 
-    public Telefon(String serialNumber, String name, int cena, Kolor kolor, String software, Screen screen) {
-        super(serialNumber, name, cena, kolor);
+
+
+    public Telefon(String serialNumber, String name, int cena, Kolor kolor, String software, Screen screen, String marka) {
+        super(serialNumber, name, cena, kolor,marka);
         this.software = software;
         this.screen = screen;
     }
 
-    public Telefon(String serialNumber, String name, int cena, Kolor kolor, String software, int resolution, int height, int width) {
-        super(serialNumber, name, cena, kolor);
+    public Telefon(String serialNumber, String name, int cena, Kolor kolor, String marka, String software, int resolution, int height, int width) {
+        super(serialNumber, name, cena, kolor, marka);
         this.software = software;
         this.screen = new Screen(resolution, height, width);
     }

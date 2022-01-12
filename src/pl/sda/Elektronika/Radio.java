@@ -8,8 +8,8 @@ public class Radio extends UrzadzenieElektroniczne implements Audio {
     public Radio() {
     }
 
-    public Radio(String serialNumber, String name, int cena, Kolor kolor, int minFrequency, int maxFrequency) {
-        super(serialNumber, name, cena, kolor);
+    public Radio(String serialNumber, String name, int cena, Kolor kolor,String marka, int minFrequency, int maxFrequency) {
+        super(serialNumber, name, cena, kolor,marka);
         this.minFrequency = minFrequency;
         this.maxFrequency = maxFrequency;
     }

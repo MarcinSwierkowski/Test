@@ -6,15 +6,17 @@ public abstract class UrzadzenieElektroniczne {
   private   String name;
   private   int cena;
   private   Kolor kolor;
+  private   String marka;
 
     public UrzadzenieElektroniczne() {
     }
 
-    public UrzadzenieElektroniczne(String serialNumber, String name, int cena, Kolor kolor) {
+    public UrzadzenieElektroniczne(String serialNumber, String name, int cena, Kolor kolor, String marka) {
         this.serialNumber = serialNumber;
         this.name = name;
         this.cena = cena;
         this.kolor = kolor;
+        this.marka = marka ;
     }
 
     abstract void powerOn();
@@ -34,6 +36,10 @@ public abstract class UrzadzenieElektroniczne {
 
     public String getName() {
         return name;
+    }
+
+    public String getMarka() {
+        return marka;
     }
 }
 
