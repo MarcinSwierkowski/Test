@@ -6,7 +6,7 @@ public class Pralnia {
 
     private List<Pralka> pralki;
 
-    public Pralnia(List<Pralka> washingmachines){
+    public Pralnia(List<Pralka> pralki){
         this.pralki = pralki;
     }
     public void wash(List<LaundryType> laundryTypes){

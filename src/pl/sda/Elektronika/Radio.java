@@ -1,0 +1,37 @@
+package pl.sda.Elektronika;
+
+public class Radio extends UrzadzenieElektroniczne implements Audio {
+
+  private   int minFrequency;
+  private   int maxFrequency;
+
+    public Radio() {
+    }
+
+    public Radio(String serialNumber, String name, int cena, Kolor kolor, int minFrequency, int maxFrequency) {
+        super(serialNumber, name, cena, kolor);
+        this.minFrequency = minFrequency;
+        this.maxFrequency = maxFrequency;
+    }
+
+    @Override
+    void powerOn() {
+        System.out.println("Radio " + getName() + " zostało włączone ON");
+    }
+
+    @Override
+    void powerOff() {
+        System.out.println("Radio " + getName() + " zostało wyłączone OFF");
+    }
+
+
+    @Override
+    public void volumeUp() {
+        System.out.println("Radio " + getName() + " VolumeUp");
+    }
+
+    @Override
+    public void volumeDown() {
+        System.out.println("Radio " + getName() + " VolumeDown");
+    }
+}
