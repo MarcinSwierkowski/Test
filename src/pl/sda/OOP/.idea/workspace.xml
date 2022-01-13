@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da137819-91a1-449c-a2cd-66960f769bef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../../.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Pralka/Pralnia.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Pralka/Pralnia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Kolekcje/DaneKolekcji.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Kolekcje/MainSety.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
