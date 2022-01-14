@@ -28,7 +28,7 @@ public class DaneKolekcji {
         return nazwisko;
     }
 
-    public int getPriorytet() {
+    public int getRcp() {
         return rcp;
     }
 
@@ -37,5 +37,16 @@ public class DaneKolekcji {
         return (id+". "+imie+" "+nazwisko+" "+rcp);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DaneKolekcji)) return false;
+        DaneKolekcji that = (DaneKolekcji) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getImie(), that.getImie()) && Objects.equals(getNazwisko(), that.getNazwisko()) && Objects.equals(rcp, that.rcp);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getImie(), getNazwisko(), rcp);
+    }
 }

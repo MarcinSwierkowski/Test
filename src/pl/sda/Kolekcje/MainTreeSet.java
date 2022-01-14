@@ -1,8 +1,6 @@
 package pl.sda.Kolekcje;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class MainTreeSet {
 
@@ -22,9 +20,9 @@ public class MainTreeSet {
         DaneKolekcji element11 = new DaneKolekcji(10, "Artur", "Puchała", 33);
 
 
-        //Set<DaneKolekcji> pracownicy = new TreeSet<>(new KomparatorId());
+        Set<DaneKolekcji> pracownicy = new TreeSet<>(new KomparatorId());
         //Set<DaneKolekcji> pracownicy = new TreeSet<>((o1, o2) -> o1.getImie().compareTo(o2.getImie()));
-        Set<DaneKolekcji> pracownicy = new TreeSet<>((o1, o2) -> o1.getNazwisko().compareTo(o2.getNazwisko()));
+        //Set<DaneKolekcji> pracownicy = new TreeSet<>((o1, o2) -> o1.getNazwisko().compareTo(o2.getNazwisko()));
 
 
         pracownicy.add(element1);
@@ -38,6 +36,11 @@ public class MainTreeSet {
         pracownicy.add(element9);
         pracownicy.add(element10);
         pracownicy.add(element11);
+
+        //Set<DaneKolekcji> namesWithNoDuplicates = new LinkedHashSet<>(pracownicy);
+        //pracownicy = new LinkedHashSet<>(namesWithNoDuplicates);
+
+        //pracownicy.stream().sorted(new KomparatorId());
 
         //System.out.println(pracownicy);
 

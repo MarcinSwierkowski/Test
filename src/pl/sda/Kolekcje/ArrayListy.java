@@ -1,14 +1,9 @@
 package pl.sda.Kolekcje;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
-public class MainHashSet {
-
+public class ArrayListy {
     public static void main(String[] args) {
-
 
         DaneKolekcji element1 = new DaneKolekcji(1, "Dawid", "Siednienko", 5);
         DaneKolekcji element2 = new DaneKolekcji(2, "Zbigniew", "Domagała", 2);
@@ -22,9 +17,10 @@ public class MainHashSet {
         DaneKolekcji element10 = new DaneKolekcji(10, "Artur", "Puchała", 33);
         DaneKolekcji element11 = new DaneKolekcji(10, "Artur", "Puchała", 33);
 
-        Set<DaneKolekcji> pracownicy = new LinkedHashSet<>();
-        //Set<DaneKolekcji> pracownicy = new HashSet<>();
+        //List<DaneKolekcji> pracownicy = new ArrayList<>();
+        List<DaneKolekcji> pracownicy = new LinkedList<>();
 
+        pracownicy.add(element11);
         pracownicy.add(element1);
         pracownicy.add(element2);
         pracownicy.add(element3);
@@ -35,15 +31,18 @@ public class MainHashSet {
         pracownicy.add(element8);
         pracownicy.add(element9);
         pracownicy.add(element10);
-        pracownicy.add(element11);
+
+
+        Set<DaneKolekcji> namesWithNoDuplicates = new LinkedHashSet<>(pracownicy);
+        pracownicy = new ArrayList<>(namesWithNoDuplicates);
 
         //System.out.println(pracownicy);
 
+        pracownicy.sort(new KomparatorRcp());
 
         for (DaneKolekcji elementy: pracownicy) {
             System.out.println(elementy);
         }
-
 
     }
 }
