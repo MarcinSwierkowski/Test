@@ -2,8 +2,10 @@ package pl.sda.Kolekcje;
 
 import java.util.*;
 
-public class ArrayListy {
+public class Mapy {
+
     public static void main(String[] args) {
+
 
         DaneKolekcji element1 = new DaneKolekcji(1, "Dawid", "Siednienko", 5);
         DaneKolekcji element2 = new DaneKolekcji(2, "Zbigniew", "Domagała", 2);
@@ -17,27 +19,24 @@ public class ArrayListy {
         DaneKolekcji element10 = new DaneKolekcji(10, "Artur", "Puchała", 33);
         DaneKolekcji element11 = new DaneKolekcji(10, "Artur", "Puchała", 33);
 
-        List<DaneKolekcji> pracownicy = new ArrayList<>();    //lepiej jest używać jeśli często chcmy mieć dostęp do losowych elementów w liście
-        //List<DaneKolekcji> pracownicy = new LinkedList<>(); //lepiej jest używać jeśli często usuwamy elementy z listy
-        //List<DaneKolekcji> pracownicy = new Vector<>();       // chyba nie uzywany --- sprawdzić
-        //List<DaneKolekcji> pracownicy = new Stack<>();    //dodajemy i sciagamy zawsze z góry
+        Map<Integer,DaneKolekcji> pracownicy = new HashMap<>();
 
 
-        pracownicy.add(element11);
-        pracownicy.add(element1);
-        pracownicy.add(element2);
-        pracownicy.add(element3);
-        pracownicy.add(element4);
-        pracownicy.add(element5);
-        pracownicy.add(element6);
-        pracownicy.add(element7);
-        pracownicy.add(element8);
-        pracownicy.add(element9);
-        pracownicy.add(element10);
+        pracownicy.put(10,element11);
+        pracownicy.put(1,element1);
+        pracownicy.put(2,element2);
+        pracownicy.put(3,element3);
+        pracownicy.put(4,element4);
+        pracownicy.put(5,element5);
+        pracownicy.put(6,element6);
+        pracownicy.put(7,element7);
+        pracownicy.put(8,element8);
+        pracownicy.put(9,element9);
+        pracownicy.put(10,element10);
 
 
-        Set<DaneKolekcji> bezDuplikatow = new LinkedHashSet<>(pracownicy);
-        pracownicy = new ArrayList<>(bezDuplikatow);
+        //Set<DaneKolekcji> bezDuplikatow = new LinkedHashSet<>(pracownicy);
+        //pracownicy = new ArrayList<>(bezDuplikatow);
 
         //System.out.println(pracownicy);
 
@@ -47,10 +46,12 @@ public class ArrayListy {
         //pracownicy.sort(new KomparatorId());
 
 
-
-        for (DaneKolekcji elementy: pracownicy) {
-            System.out.println(elementy);
+        Set<Map.Entry<Integer,DaneKolekcji>> element = pracownicy.entrySet();
+        for (Map.Entry<Integer,DaneKolekcji> pozycja : element) {
+            System.out.println(pozycja.getKey()+ " " + pozycja.getValue());
         }
 
+
     }
+
 }

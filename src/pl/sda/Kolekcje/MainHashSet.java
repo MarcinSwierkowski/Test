@@ -22,8 +22,10 @@ public class MainHashSet {
         DaneKolekcji element10 = new DaneKolekcji(10, "Artur", "Puchała", 33);
         DaneKolekcji element11 = new DaneKolekcji(10, "Artur", "Puchała", 33);
 
-        Set<DaneKolekcji> pracownicy = new LinkedHashSet<>();
-        //Set<DaneKolekcji> pracownicy = new HashSet<>();
+        Set<DaneKolekcji> pracownicy = new LinkedHashSet<>(); //pamięta kolejność dodawania
+        //Set<DaneKolekcji> pracownicy = new HashSet<>(); // nie pamięta kolejności dodawania
+
+        // wazne aby wygenerowac metody hashCode oraz equals. gwarantują unikalność elementów
 
         pracownicy.add(element1);
         pracownicy.add(element2);

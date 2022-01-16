@@ -1,0 +1,14 @@
+Java podstawy --- zrobione 
+Java podstawy programowanie --- do zrobienia
+Testowanie oprogramowania podstawy --- do zrobienia
+Java zaawansowana --- zrobione 
+Wzorce projektowe i dobre praktyki --- zrobione 
+Java zaawansowana programowanie --- zrobione 
+Bazy danych SQL --- zrobione 
+JDBC Hibernate --- zrobione 
+Projekt praktyczny --- do zrobienia
+HTML, CSS i JavaScript --- do zrobienia
+Technologie frontendowe --- do zrobienia
+Spring --- do zrobienia
+Testowanie oprogramowania zaawansowane --- do zrobienia
+Projekt końcowy --- zrobione 

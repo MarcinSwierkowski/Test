@@ -1,0 +1,14 @@
+Java podstawy
+Java podstawy programowanie
+Testowanie oprogramowania podstawy
+Java zaawansowana
+Wzorce projektowe i dobre praktyki
+Java zaawansowana programowanie
+Bazy danych SQL
+JDBC Hibernate
+Projekt praktyczny
+HTML, CSS i JavaScript
+Technologie frontendowe
+Spring
+Testowanie oprogramowania zaawansowane
+Projekt końcowy

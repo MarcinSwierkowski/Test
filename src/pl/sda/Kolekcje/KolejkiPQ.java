@@ -2,7 +2,8 @@ package pl.sda.Kolekcje;
 
 import java.util.*;
 
-public class MainTreeSet {
+public class KolejkiPQ {
+
 
     public static void main(String[] args) {
 
@@ -20,10 +21,19 @@ public class MainTreeSet {
         DaneKolekcji element11 = new DaneKolekcji(10, "Artur", "Puchała", 33);
 
 
-        Set<DaneKolekcji> pracownicy = new TreeSet<>(new KomparatorId());
 
-        //Set<DaneKolekcji> pracownicy = new TreeSet<>((o1, o2) -> o1.getImie().compareTo(o2.getImie()));
-        //Set<DaneKolekcji> pracownicy = new TreeSet<>((o1, o2) -> o1.getNazwisko().compareTo(o2.getNazwisko()));
+        Queue<DaneKolekcji> pracownicy = new PriorityQueue<>(new KomparatorId());
+        //Queue<DaneKolekcji> pracownicy = new PriorityQueue<>(new KomparatorImie());
+        //Queue<DaneKolekcji> pracownicy = new PriorityQueue<>(new KomparatorNazwisko());
+        //Queue<DaneKolekcji> pracownicy = new PriorityQueue<>(new KomparatorRcp());
+
+
+        //pracownicy.push(element1);
+        //pracownicy.addFirst(element1);        // działa jak push
+        //pracownicy.add(element1);             // albo add, który doda na koniec
+        //pracownicy.peek();                    // podgladamy co jest do pobrania
+        //pracownicy.poll();                    // pobieramy czyli zabieramy z kolejki
+
 
 
         pracownicy.add(element1);
@@ -38,14 +48,26 @@ public class MainTreeSet {
         pracownicy.add(element10);
         pracownicy.add(element11);
 
-        Set<DaneKolekcji> bezDuplikatow = new LinkedHashSet<>(pracownicy);
-        pracownicy = new LinkedHashSet<>(bezDuplikatow);
 
-        pracownicy.stream().sorted(new KomparatorId());
+        Set<DaneKolekcji> bezDuplikatow = new LinkedHashSet<>(pracownicy);
+
+        Queue<DaneKolekcji> pracownicy1 = new PriorityQueue<>(new KomparatorImie());
+        pracownicy1.addAll(bezDuplikatow);
+
+
+
+
+        //pracownicy.stream().sorted(new KomparatorImie());
 
         //System.out.println(pracownicy);
 
-        for (DaneKolekcji elementy: pracownicy) {
+        //pracownicy.sort(new KomparatorRcp());
+        //pracownicy.sort(new KomparatorNazwisko());
+        //pracownicy.sort(new KomparatorImie());
+        //pracownicy.sort(new KomparatorId());
+
+
+        for (DaneKolekcji elementy : pracownicy1) {
             System.out.println(elementy);
         }
 

@@ -2,7 +2,7 @@ package pl.sda.Kolekcje;
 
 import java.util.*;
 
-public class MainTreeSet {
+public class KolejkiLL {
 
     public static void main(String[] args) {
 
@@ -20,10 +20,13 @@ public class MainTreeSet {
         DaneKolekcji element11 = new DaneKolekcji(10, "Artur", "Puchała", 33);
 
 
-        Set<DaneKolekcji> pracownicy = new TreeSet<>(new KomparatorId());
+        Queue<DaneKolekcji> pracownicy = new LinkedList<>();
 
-        //Set<DaneKolekcji> pracownicy = new TreeSet<>((o1, o2) -> o1.getImie().compareTo(o2.getImie()));
-        //Set<DaneKolekcji> pracownicy = new TreeSet<>((o1, o2) -> o1.getNazwisko().compareTo(o2.getNazwisko()));
+        //pracownicy.push(element1);
+        //pracownicy.addFirst(element1);        // działa jak push
+        //pracownicy.add(element1);             // albo add, który doda na koniec
+        //pracownicy.peek();                    // podgladamy co jest do pobrania
+        //pracownicy.poll();                    // pobieramy czyli zabieramy z kolejki
 
 
         pracownicy.add(element1);
@@ -39,15 +42,16 @@ public class MainTreeSet {
         pracownicy.add(element11);
 
         Set<DaneKolekcji> bezDuplikatow = new LinkedHashSet<>(pracownicy);
-        pracownicy = new LinkedHashSet<>(bezDuplikatow);
-
-        pracownicy.stream().sorted(new KomparatorId());
+        pracownicy = new LinkedList<>(bezDuplikatow);
 
         //System.out.println(pracownicy);
 
-        for (DaneKolekcji elementy: pracownicy) {
+
+        for (DaneKolekcji elementy : pracownicy) {
             System.out.println(elementy);
         }
 
     }
+
 }
+

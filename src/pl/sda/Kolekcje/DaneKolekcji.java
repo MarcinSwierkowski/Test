@@ -34,7 +34,7 @@ public class DaneKolekcji {
 
     @Override
     public String toString() {
-        return (id+". "+imie+" "+nazwisko+" "+rcp);
+        return (id+". "+imie+"  "+nazwisko+"  "+rcp);
     }
 
     @Override
