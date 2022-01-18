@@ -38,10 +38,10 @@ public class MainTreeSet {
         pracownicy.add(element10);
         pracownicy.add(element11);
 
-        Set<DaneKolekcji> bezDuplikatow = new LinkedHashSet<>(pracownicy);
-        pracownicy = new LinkedHashSet<>(bezDuplikatow);
+        //Set<DaneKolekcji> bezDuplikatow = new LinkedHashSet<>(pracownicy);
+        //pracownicy = new LinkedHashSet<>(bezDuplikatow);
 
-        pracownicy.stream().sorted(new KomparatorId());
+        //pracownicy.stream().sorted(new KomparatorId());
 
         //System.out.println(pracownicy);
 

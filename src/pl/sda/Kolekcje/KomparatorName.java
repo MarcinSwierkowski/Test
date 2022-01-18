@@ -22,8 +22,14 @@ class KomparatorId implements Comparator<DaneKolekcji> {
 
     @Override
     public int compare(DaneKolekcji o1, DaneKolekcji o2) {
-        if (o1.getId()>o2.getId()) return 1;
-        else return -1;
+        if(o1.getId() > o2.getId()){
+            return 1;
+        } else if(o1.getId() == o2.getId()) {
+            return 0;
+        } else {
+            return -1;
+        }
+
     }
 }
 
