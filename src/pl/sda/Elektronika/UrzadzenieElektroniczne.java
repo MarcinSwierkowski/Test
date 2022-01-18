@@ -1,6 +1,8 @@
 package pl.sda.Elektronika;
 
-public abstract class UrzadzenieElektroniczne {
+import java.io.Serializable;
+
+public abstract class UrzadzenieElektroniczne implements Serializable {
 
   private   String serialNumber;
   private   String name;
@@ -40,6 +42,17 @@ public abstract class UrzadzenieElektroniczne {
 
     public String getMarka() {
         return marka;
+    }
+
+    @Override
+    public String toString() {
+        return "UrzadzenieElektroniczne{" +
+                "serialNumber='" + serialNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", cena=" + cena +
+                ", kolor=" + kolor +
+                ", marka='" + marka + '\'' +
+                '}';
     }
 }
 

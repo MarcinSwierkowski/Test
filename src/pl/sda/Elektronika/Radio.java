@@ -1,6 +1,8 @@
 package pl.sda.Elektronika;
 
-public class Radio extends UrzadzenieElektroniczne implements Audio {
+import java.io.Serializable;
+
+public class Radio extends UrzadzenieElektroniczne implements Audio, Serializable {
 
   private   int minFrequency;
   private   int maxFrequency;
@@ -33,5 +35,13 @@ public class Radio extends UrzadzenieElektroniczne implements Audio {
     @Override
     public void volumeDown() {
         System.out.println("Radio " + getName() + " VolumeDown");
+    }
+
+    @Override
+    public String toString() {
+        return "Radio{" +
+                "minFrequency=" + minFrequency +
+                ", maxFrequency=" + maxFrequency +
+                '}';
     }
 }

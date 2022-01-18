@@ -1,7 +1,9 @@
 package pl.sda.Elektronika;
 
+import java.io.*;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 
         Radio radio1 = new Radio("SN123456","Yamaha RX 485 ",120,Kolor.BIAŁY,"Yamaha",80,120);
@@ -31,5 +33,36 @@ public class Main {
         System.out.println();
         System.out.println("Posiadane Marki Sprzętu:");
         koszyk.wydrukujMarkiUrzadzen();
+
+
+        System.out.println("SERIALIZACJA i DESERIALIZACJA");
+
+        serializujObiekt("objekt.txt",telefon1);
+        deSerializujObiekt("objekt.txt",telefon1);
+
+
+
+
+
     }
+
+    private static void deSerializujObiekt(String nazwa_pliku, UrzadzenieElektroniczne object) throws IOException, ClassNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(nazwa_pliku);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        UrzadzenieElektroniczne deserializedDevice = (UrzadzenieElektroniczne) objectInputStream.readObject();
+        objectInputStream.close();
+        System.out.println(deserializedDevice);
+
+    }
+
+    private static void serializujObiekt(String nazwa_pliku, UrzadzenieElektroniczne object) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(nazwa_pliku);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(object);
+        fileOutputStream.flush();
+        objectOutputStream.close();
+        System.out.println(object);
+    }
+
+
 }

@@ -1,6 +1,8 @@
 package pl.sda.Elektronika;
 
-public class Telefon extends UrzadzenieElektroniczne implements Video {
+import java.io.Serializable;
+
+public class Telefon extends UrzadzenieElektroniczne implements Video, Serializable {
 
     String software;
     Screen  screen;
@@ -38,7 +40,7 @@ public class Telefon extends UrzadzenieElektroniczne implements Video {
     }
 }
 
-class Screen {
+class Screen implements Serializable{
      int resolution;
      int height;
      int width;
