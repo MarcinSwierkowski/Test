@@ -7,7 +7,7 @@ public class DaneKolekcji {
     private Integer id;
     private String imie;
     private String nazwisko;
-    private Integer rcp;
+    private int rcp;
 
     public DaneKolekcji(int id, String imie, String nazwisko, int rcp) {
         this.id = id;
@@ -30,6 +30,10 @@ public class DaneKolekcji {
 
     public int getRcp() {
         return rcp;
+    }
+
+    public void setRcp() {
+        this.rcp = rcp;
     }
 
     @Override

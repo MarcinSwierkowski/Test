@@ -1,6 +1,7 @@
 package pl.sda.Kolekcje;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Mapy {
 
@@ -50,6 +51,10 @@ public class Mapy {
         for (Map.Entry<Integer,DaneKolekcji> pozycja : element) {
             System.out.println(pozycja.getKey()+ " " + pozycja.getValue());
         }
+
+
+
+        Stream<Map.Entry<Integer, DaneKolekcji>> streamFromMap = pracownicy.entrySet().stream();
 
 
     }
