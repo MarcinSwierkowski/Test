@@ -1,25 +1,30 @@
 package pl.sda.Elektronika;
 
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 
-        Radio radio1 = new Radio("SN123456","Yamaha RX 485 ",120,Kolor.BIAŁY,"Yamaha",80,120);
+        Radio radio1 = new Radio("SN123456", "Yamaha RX 485 ", 120, Kolor.BIAŁY, "Yamaha", 80, 120);
 
         radio1.powerOn();
         radio1.powerOff();
         radio1.volumeDown();
         radio1.volumeUp();
 
-        Screen ekran = new Screen(1024,800,72);
+        Screen ekran = new Screen(1024, 800, 72);
 
-        Telefon telefon1 = new Telefon("SN558559","Samsung S8",250,Kolor.CZARNY,"Android 10",ekran,"Samsung");
+        Telefon telefon1 = new Telefon("SN558559", "Samsung S8", 250, Kolor.CZARNY, "Android 10", ekran, "Samsung");
 
         telefon1.powerOn();
 
-        Telefon telefon2 = new Telefon("SN5534599","Samsung S9",350,Kolor.SZARY,"Samsung","Android 12",2048,6000,300);
+        Telefon telefon2 = new Telefon("SN5534599", "Samsung S9", 350, Kolor.SZARY, "Samsung", "Android 12", 2048, 6000, 300);
 
 
         Koszyk koszyk = new Koszyk();
@@ -37,14 +42,15 @@ public class Main {
 
         System.out.println("SERIALIZACJA i DESERIALIZACJA");
 
-        serializujObiekt("objekt.txt",telefon1);
-        deSerializujObiekt("objekt.txt",telefon1);
+        serializujObiekt("objekt.txt", telefon1);
+        deSerializujObiekt("objekt.txt", telefon1);
 
-
-
+        refleksjaOKlasie();
 
 
     }
+
+
 
     private static void deSerializujObiekt(String nazwa_pliku, UrzadzenieElektroniczne object) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(nazwa_pliku);
@@ -64,5 +70,34 @@ public class Main {
         System.out.println(object);
     }
 
+
+    private static void refleksjaOKlasie() throws ClassNotFoundException {
+
+
+            Class<?> elektronika = Class.forName("pl.sda.Elektronika.UrzadzenieElektroniczne");
+            Field[] fields = elektronika.getDeclaredFields();
+            System.out.println("--------POLA KLASY---------");
+            for (Field field : fields) {
+                System.out.println(field.getName());
+
+            }
+            System.out.println("---------METODY KLASY------------");
+            Method[] methods = elektronika.getDeclaredMethods();
+            for (Method method : methods) {
+                System.out.println(method.getName());
+
+            }
+            System.out.println("--------KONSTRUKTOR KLASY---------");
+            Constructor<?>[] constructors = elektronika.getConstructors();
+            for (Constructor<?> constructor : constructors) {
+                System.out.println(constructor.getName());
+                System.out.println(Arrays.toString(constructor.getParameterTypes()));
+            }
+
+            System.out.println("--------DZIEDZICZY PO -------");
+
+            System.out.println(elektronika.getSuperclass().getName());
+
+         }
 
 }
