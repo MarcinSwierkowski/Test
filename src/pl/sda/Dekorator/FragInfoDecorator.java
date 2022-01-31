@@ -1,0 +1,31 @@
+package pl.sda.Dekorator;
+
+public class FragInfoDecorator implements FragStatistics {
+
+    private final FragStatistics fragStatistics;
+
+    public FragInfoDecorator(final FragStatistics fragStatistics) {
+        this.fragStatistics = fragStatistics;
+    }
+
+    @Override
+    public int incrementFragCount() {
+        System.out.println("Enemy fragged");
+        return fragStatistics.incrementFragCount();
+    }
+
+    @Override
+    public int incrementDeathCount() {
+        return fragStatistics.incrementDeathCount();
+    }
+
+    @Override
+    public void reset() {
+        fragStatistics.reset();
+    }
+
+    @Override
+    public void wypiszcos() {
+        System.out.println("FID");
+    }
+}
