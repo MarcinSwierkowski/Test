@@ -2,10 +2,6 @@ package pl.sda.Plansza;
 
 public class Plansza {
 
-    private int rozmiarX = SingletonConfig.getInstance().rozmiarPlanszyX;
-    private int rozmiarY = SingletonConfig.getInstance().rozmiarPlanszyX;
-
-    String[][] tablica = new String[rozmiarX][rozmiarY];
 
     public Plansza() {
     }

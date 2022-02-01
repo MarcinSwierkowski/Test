@@ -5,27 +5,11 @@ import java.util.*;
 public class PlanszaApp {
     public static void main(String[] args) {
 
-
-        Plansza plansza = new Plansza();
-        Wojownik npc1 = new Wojownik(2, 2, "X", 100, 15);
-        Wojownik npc2 = new Wojownik(3, 3, "Y", 100, 20);
-        Wojownik npc3 = new Wojownik(4, 3, "Z", 100, 8);
-        Wojownik npc4 = new Wojownik(1, 0, "P", 100, 5);
+        SingletonConfig.getInstance().wygenerujApteczki();
+        SingletonConfig.getInstance().wygenerujWojownikow();
 
 
-        List<Items> itemsList = new ArrayList<>();
 
-        wygenerujApteczki(itemsList);
-        umiescItemsNaPlanszy(itemsList,plansza);
-        plansza.rysujPlansze();
-
-        System.out.println(itemsList);
-
-        List<Wojownik> npcList = new ArrayList<>();
-        npcList.add(npc1);
-        npcList.add(npc2);
-        npcList.add(npc3);
-        npcList.add(npc4);
 
 
         for (int i = 0; i < 500; i++) {
@@ -43,11 +27,6 @@ public class PlanszaApp {
         pokarzZywych(npcList);
 
 
-        System.out.println("Wszyscy gracze:");
-        System.out.println(npc1);
-        System.out.println(npc2);
-        System.out.println(npc3);
-        System.out.println(npc4);
 
 
     }
@@ -102,18 +81,6 @@ public class PlanszaApp {
         return (wojownik.getPozycjaX()== wojownik1.getPozycjaX() && wojownik.getPozycjaY()==wojownik1.getPozycjaY());
     }
 
-    private static void wygenerujApteczki(List<Items> lista){
-        Random random = new Random();
-        for (int i = 1; i <= SingletonConfig.getInstance().iloscApteczek; i++) {
-           String nazwa="Apteczka_"+i;
-           String symbol="A";
-           int pojemnosc = 30;
-           int typ = 1;
-           int pozycjaX = random.nextInt(SingletonConfig.getInstance().rozmiarPlanszyX);
-           int pozycjaY = random.nextInt(SingletonConfig.getInstance().rozmiarPlanszyY);
-           Items items = new Items(nazwa,symbol,pozycjaX,pozycjaY,typ,pojemnosc);
-           lista.add(items);
-        }
-    }
+
 
 }
