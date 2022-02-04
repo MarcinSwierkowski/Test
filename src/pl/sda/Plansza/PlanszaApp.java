@@ -1,45 +1,30 @@
 package pl.sda.Plansza;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PlanszaApp {
     public static void main(String[] args) {
 
-
-        Plansza plansza = new Plansza();
-        Wojownik npc1 = new Wojownik(2, 2, "X", 100, 15);
-        Wojownik npc2 = new Wojownik(3, 3, "Y", 100, 20);
-        Wojownik npc3 = new Wojownik(4, 3, "Z", 100, 8);
-        Wojownik npc4 = new Wojownik(1, 0, "P", 100, 5);
+        SingletonConfig.getInstance().wygenerujApteczki();
+        SingletonConfig.getInstance().wygenerujWojownikow();
 
 
-        List<Wojownik> npcList = new ArrayList<>();
-        npcList.add(npc1);
-        npcList.add(npc2);
-        npcList.add(npc3);
-        npcList.add(npc4);
+
 
 
         for (int i = 0; i < 500; i++) {
             for (Wojownik element : npcList) {
-                element.idz();}
-            sprawdzKonflikty(npcList);
+                element.idz();
+            }
+            sprawdzKonfliktyGraczy(npcList);
             sprawdzKtoNieZyje(npcList);
         }
 
         plansza.wyczyscTablice();
-        umiescZywychNaPlanszy(npcList,plansza);
+        umiescZywychNaPlanszy(npcList, plansza);
         plansza.rysujPlansze();
 
         pokarzZywych(npcList);
-
-
-        System.out.println("Wszyscy gracze:");
-        System.out.println(npc1);
-        System.out.println(npc2);
-        System.out.println(npc3);
-        System.out.println(npc4);
 
 
 
@@ -60,32 +45,42 @@ public class PlanszaApp {
         }
     }
 
-    private static void sprawdzKtoNieZyje(List<Wojownik> npcList) {
-            npcList.removeIf(n->n.getLifeLevel()<=0);
+    private static void umiescItemsNaPlanszy(List<Items> itemsList, Plansza plansza) {
+        for (Items element : itemsList) {
+            plansza.tablica[element.getPozycjaX()][element.getPozycjaY()] = element.getSymbol();
         }
+    }
 
-    private static void sprawdzKonflikty(List<Wojownik> npcList) {
+    private static void sprawdzKtoNieZyje(List<Wojownik> npcList) {
+        npcList.removeIf(n -> n.getLifeLevel() <= 0);
+    }
 
-        for (int i = 0; i < npcList.size(); i++) {
+    private static void sprawdzKonfliktyGraczy(List<Wojownik> npcList) {
 
-            int xi = npcList.get(i).getPozycjaX();
-            int yi = npcList.get(i).getPozycjaY();
+        for (int i = 0; i < npcList.size() - 1; i++) {
+            for (int j = i + 1; j < npcList.size(); j++) {
 
-            for (int j = 0; j < npcList.size(); j++) {
-                if (i != j) {
-                    int xj = npcList.get(j).getPozycjaX();
-                    int yj = npcList.get(j).getPozycjaY();
-                    if (xi == xj && yi == yj) {
-                        int power = npcList.get(i).getPower();
-                        int aktualnyLifeLevel = npcList.get(j).getLifeLevel();
-                       // System.out.println("Wojna" + npcList.get(i) + ":" + npcList.get(j));
-                        npcList.get(j).setLifeLevel(aktualnyLifeLevel - power);
-                       // System.out.println("Wojna" + npcList.get(i) + ":" + npcList.get(j));
-                    }
+                if (czyJestKonflikt(npcList.get(i),npcList.get(j))) {
+
+                    int powerNapastnika = npcList.get(i).getPower();
+                    int powerOfiary = npcList.get(j).getPower();
+
+                    int aktualnyLifeLevelOfiary = npcList.get(j).getLifeLevel();
+                    int aktualnyLifeLevelNapastnika = npcList.get(j).getLifeLevel();
+
+                    // System.out.println("Wojna" + npcList.get(i) + ":" + npcList.get(j));
+                    npcList.get(j).setLifeLevel(aktualnyLifeLevelOfiary - powerNapastnika);    // narazie nie ma premii dla atakującego
+                    npcList.get(i).setLifeLevel(aktualnyLifeLevelNapastnika - powerOfiary);
+                    //System.out.println("Wojna" + npcList.get(i) + ":" + npcList.get(j));
                 }
             }
         }
     }
+
+    private static boolean czyJestKonflikt(Wojownik wojownik, Wojownik wojownik1) {
+        return (wojownik.getPozycjaX()== wojownik1.getPozycjaX() && wojownik.getPozycjaY()==wojownik1.getPozycjaY());
+    }
+
 
 
 }
