@@ -87,12 +87,15 @@ public class Wojownik {
 
     @Override
     public String toString() {
-        return "Npc{" +
+        return "Wojownik{" +
                 "pozycjaX=" + pozycjaX +
                 ", pozycjaY=" + pozycjaY +
                 ", nazwa='" + nazwa + '\'' +
+                ", symbol='" + symbol + '\'' +
                 ", lifeLevel=" + lifeLevel +
                 ", power=" + power +
+                ", borderX=" + borderX +
+                ", borderY=" + borderY +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package pl.sda.Plansza;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,14 +17,18 @@ public class SingletonConfig {
     int rozmiarPlanszyX = 20;
     int rozmiarPlanszyY = 20;
 
-    int iloscWojownikow = 4;
+    int iloscWojownikow = 10;
     int iloscApteczek = 5;
     int iloscPulapek = 5;
 
-    String[][] plansza = new String[rozmiarPlanszyX][rozmiarPlanszyY];
+    private String[][] plansza = new String[rozmiarPlanszyX][rozmiarPlanszyY];
 
-    List<Items> itemsList;
-    List<Wojownik> wojownikList;
+    public String[][] getPlansza() {
+        return plansza;
+    }
+
+    List<Items> itemsList = new ArrayList<>();
+    List<Wojownik> wojownikList = new ArrayList<>();
 
     public void wygenerujApteczki(){
         Random random = new Random();
@@ -53,16 +58,75 @@ public class SingletonConfig {
         }
     }
 
-    public void umiescItemNaPlanszy(List<Items> itemsList, String[][] plansza) {
+    public void umiescItemNaPlanszy() {
         for (Items element : itemsList) {
             plansza[element.getPozycjaX()][element.getPozycjaY()] = element.getSymbol();
         }
     }
 
-    public void umiescWojownikaNaPlanszy(List<Wojownik> wojownikList, String[][] plansza) {
+    public void umiescWojownikaNaPlanszy() {
         for (Wojownik element : wojownikList) {
             plansza[element.getPozycjaX()][element.getPozycjaY()] = element.getSymbol();
         }
     }
+
+    public void sprawdzKonfliktyGraczy() {
+
+        for (int i = 0; i < wojownikList.size() - 1; i++) {
+            for (int j = i + 1; j < wojownikList.size(); j++) {
+
+                if (czyJestKonflikt(wojownikList.get(i),wojownikList.get(j))) {
+
+                    int powerNapastnika = wojownikList.get(i).getPower();
+                    int powerOfiary = wojownikList.get(j).getPower();
+
+                    int aktualnyLifeLevelOfiary = wojownikList.get(j).getLifeLevel();
+                    int aktualnyLifeLevelNapastnika = wojownikList.get(j).getLifeLevel();
+
+                    // System.out.println("Wojna" + npcList.get(i) + ":" + npcList.get(j));
+                    wojownikList.get(j).setLifeLevel(aktualnyLifeLevelOfiary - powerNapastnika);    // narazie nie ma premii dla atakującego
+                    wojownikList.get(i).setLifeLevel(aktualnyLifeLevelNapastnika - powerOfiary);
+                    //System.out.println("Wojna" + npcList.get(i) + ":" + npcList.get(j));
+                }
+            }
+        }
+    }
+
+    private boolean czyJestKonflikt(Wojownik wojownik, Wojownik wojownik1) {
+        return (wojownik.getPozycjaX()== wojownik1.getPozycjaX() && wojownik.getPozycjaY()==wojownik1.getPozycjaY());
+    }
+
+    public void pokarzZywych() {
+        System.out.println("Gracze którzy przeżyli grę:");
+        for (Wojownik element : wojownikList) {
+            System.out.println(element);
+        }
+    }
+
+    public void sprawdzKtoNieZyje() {
+        wojownikList.removeIf(n -> n.getLifeLevel() <= 0);
+    }
+
+
+    public void rysujPlansze() {
+        String znak = "";
+        for (int i = 0; i < rozmiarPlanszyY; i++) {
+            for (int j = 0; j < rozmiarPlanszyX; j++) {
+                if (plansza[j][i] == null) znak = ".";
+                else znak=plansza[j][i];
+                System.out.print(znak);
+            }
+            System.out.println();
+        }
+    }
+
+    public void wyczyscPlansze(){
+        for (int i = 0; i < rozmiarPlanszyY; i++) {
+            for (int j = 0; j < rozmiarPlanszyX; j++) {
+                plansza[j][i]=null;
+            }
+        }
+    }
+
 
 }
