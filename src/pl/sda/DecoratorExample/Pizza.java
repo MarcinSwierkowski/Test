@@ -1,9 +1,9 @@
 package pl.sda.DecoratorExample;
 
-public class Pizza implements PizzaMaker{
+public class Pizza implements PizzaMaker {
 
     int cenaPizzy = 0;
-String nazwa = "";
+    String nazwa = "< - Kompozycja Klienta ";
 
 
     @Override
@@ -18,7 +18,7 @@ String nazwa = "";
 
     @Override
     public String toString() {
-        return "Pizza{" +
+        return "Pizza Kompozycja Klienta{" +
                 "cenaPizzy=" + cenaPizzy +
                 '}';
     }

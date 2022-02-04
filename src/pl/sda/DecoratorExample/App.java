@@ -7,8 +7,8 @@ public class App {
 
         PizzaMaker dekorPizza = new Ciasto(new Pieczarki(new Ser(mojaPizza)));
 
-        System.out.println(dekorPizza.nazwa());
-        System.out.println(dekorPizza.getPrice());
+        System.out.println("Skład pizzy :"+dekorPizza.nazwa());
+        System.out.println("Cena pizzy :"+dekorPizza.getPrice()+" zł.");
 
     }
 }
