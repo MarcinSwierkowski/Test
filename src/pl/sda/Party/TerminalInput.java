@@ -1,46 +1,35 @@
-package pl.sda.Kolekcje;
+package pl.sda.Party;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TestArrayList {
-    public static void main(String[] args) {
+public class TerminalInput {
 
+    private List<String> listaGosci;
+    private List<String> listaGosciDoUsuniecia = new ArrayList<>();
+    private int max;
+    private String nazwaImprezy;
 
-        List<String> listaGosci = new ArrayList<>();
-        List<String> listaGosciDoUsunięcia = new ArrayList<>();
-
-        podajImiona("Podaj imiona które dopiszemy do Listy gości :", listaGosci, listaGosciDoUsunięcia, 5, "dodaj");
-
-        System.out.println("Aktualnia lista Gości : ");
-        System.out.println(listaGosci);
-
-        podajImiona("Podaj imiona które dopiszemy do Listy gości :", listaGosci, listaGosciDoUsunięcia, 5, "dodaj");
-
-        podajImiona("Podaj imiona które chcesz usunąć z  Listy gości :", listaGosci, listaGosciDoUsunięcia, 5, "usun");
-
-
-
-        listaGosci.removeAll(listaGosciDoUsunięcia);
-
-        System.out.println("Aktualnia lista Gości : ");
-        System.out.println(listaGosci);
-
-
+    public TerminalInput(List<String> listaGosci, int max, String nazwaImprezy) {
+        this.listaGosci = listaGosci;
+        this.max = max;
+        this.nazwaImprezy = nazwaImprezy;
     }
 
-    private static void podajImiona(String komunikat, List<String> listaGosci, List<String> listaGosciDoUsuniecia, int max, String akcja) {
-
-        System.out.println(komunikat);
+    public List<String> podajImiona(String akcja) {
 
         if (akcja.equals("dodaj")) {
+
+            System.out.println("Maksymalna ilośc miejsc na imprezę " + nazwaImprezy + " :" + max);
             max = max - listaGosci.size();
-            System.out.println("Maksymalna ilośc miejsc :" + max);
+            System.out.println("Pozostała ilośc miejsc na imprezę " + nazwaImprezy + " :" + max);
+            System.out.println("Podaj imiona które dopiszemy do listy gości :");
         }
+
 
         if (akcja.equals("usun")) {
             max = listaGosci.size();
@@ -63,10 +52,11 @@ public class TestArrayList {
 
             if (element.isEmpty()) {
                 if (akcja.equals("dodaj")) {
-                    System.out.println("Koniec wprowadzania listy. Pozostało jeszcze wolnych miejsc :" + (max - counter + 1));
+                    System.out.println("Koniec wprowadzania listy.");
+                    System.out.println("Na imprezę "+nazwaImprezy+" pozostało jeszcze wolnych miejsc :" + (max - counter + 1));
                 }
                 if (akcja.equals("usun")) {
-                    System.out.println("Koniec wprowadzania listy do Usunięcia.");
+                    System.out.println("Koniec wprowadzania listy do usunięcia.");
                 }
                 break;
             }
@@ -91,24 +81,27 @@ public class TestArrayList {
             if (czyDodac) {
                 if (akcja.equals("dodaj")) {
                     listaGosci.add(element);
-                    System.out.println("Dodano :" + element + " pozostało wolnych miejsc :" + (max - counter));
+                    System.out.println("Dodano :" + element);
+                    System.out.println("Pozostało wolnych miejsc :" + (max - counter));
                 }
                 if (akcja.equals("usun")) {
                     listaGosciDoUsuniecia.add(element);
                     System.out.println("Dodano do usunięcia :" + element);
+                    listaGosci.removeAll(listaGosciDoUsuniecia);
                 }
                 counter++;
                 if (counter == max + 1) czyKoniec = true;
             }
         }
+        Collections.sort(listaGosci);
+        return listaGosci;
     }
 
-    private static boolean czyJuzJestnaLiscie(List<String> lista, String poszukiwany) {
+    private boolean czyJuzJestnaLiscie(List<String> lista, String poszukiwany) {
         boolean wynik = false;
         for (String element : lista) {
             if (element.equals(poszukiwany)) wynik = true;
         }
         return wynik;
     }
-
 }
