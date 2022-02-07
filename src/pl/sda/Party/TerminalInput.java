@@ -13,16 +13,30 @@ public class TerminalInput {
     private List<String> listaGosciDoUsuniecia = new ArrayList<>();
     private int max;
     private String nazwaImprezy;
+    private int actualMembersCount;
 
-    public TerminalInput(List<String> listaGosci, int max, String nazwaImprezy) {
+    public TerminalInput(List<String> listaGosci, int max, String nazwaImprezy, int actualMembersCount) {
         this.listaGosci = listaGosci;
         this.max = max;
         this.nazwaImprezy = nazwaImprezy;
+        this.actualMembersCount = actualMembersCount;
     }
 
     public List<String> podajImiona(String akcja) {
 
+        int counter = 1;
+        boolean czyKoniec = false;
+        boolean czyDodac = true;
+
+
         if (akcja.equals("dodaj")) {
+            if (max == actualMembersCount) {
+                czyKoniec = true;
+                System.out.println("Ta impreza jest już pełna. Nie da się już dodać nowej osoby");
+            }
+        }
+
+        if (akcja.equals("dodaj") && !czyKoniec) {
 
             System.out.println("Maksymalna ilośc miejsc na imprezę " + nazwaImprezy + " :" + max);
             max = max - listaGosci.size();
@@ -30,21 +44,25 @@ public class TerminalInput {
             System.out.println("Podaj imiona które dopiszemy do listy gości :");
         }
 
-
         if (akcja.equals("usun")) {
+            if (actualMembersCount == 0) {
+                czyKoniec = true;
+                System.out.println("Ta impreza jest pusta. Nie da się nic usunąć");
+            }
+        }
+
+        if (akcja.equals("usun") && !czyKoniec) {
             max = listaGosci.size();
             System.out.println("Z tej listy możesz usunąć max :" + listaGosci.size());
         }
 
-        System.out.println("Pusta linia kończy wprowadzanie.");
+
         Scanner scanner = new Scanner(System.in);
         String element;
 
-        int counter = 1;
-        boolean czyKoniec = false;
-        boolean czyDodac = true;
 
         while (!czyKoniec) {
+            System.out.println("Pusta linia kończy wprowadzanie.");
             element = scanner.nextLine();
             Pattern wzor = Pattern.compile("[0-9]");
             Matcher znajdywacz = wzor.matcher(element);
@@ -53,7 +71,7 @@ public class TerminalInput {
             if (element.isEmpty()) {
                 if (akcja.equals("dodaj")) {
                     System.out.println("Koniec wprowadzania listy.");
-                    System.out.println("Na imprezę "+nazwaImprezy+" pozostało jeszcze wolnych miejsc :" + (max - counter + 1));
+                    System.out.println("Na imprezę " + nazwaImprezy + " pozostało jeszcze wolnych miejsc :" + (max - counter + 1));
                 }
                 if (akcja.equals("usun")) {
                     System.out.println("Koniec wprowadzania listy do usunięcia.");

@@ -14,6 +14,11 @@ public class PartyApp {
         System.out.println(impreza1);
 
 
+        impreza1.addPartyMembers();
+
+        System.out.println("---------------------");
+        System.out.println(impreza1);
+
         impreza1.removePartyMembers();
 
         System.out.println("---------------------");

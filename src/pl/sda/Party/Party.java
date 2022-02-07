@@ -20,14 +20,14 @@ public class Party implements PartyList{
 
     @Override
     public void addPartyMembers() {
-        TerminalInput terminalInput = new TerminalInput(memberList,maxMembers,partyName);
+        TerminalInput terminalInput = new TerminalInput(memberList,maxMembers,partyName,actualMembersCount);
         memberList=terminalInput.podajImiona("dodaj");
         actualMembersCount=memberList.size();
     }
 
     @Override
     public void removePartyMembers() {
-        TerminalInput terminalInput = new TerminalInput(memberList,maxMembers,partyName);
+        TerminalInput terminalInput = new TerminalInput(memberList,maxMembers,partyName,actualMembersCount);
         memberList=terminalInput.podajImiona("usun");
         actualMembersCount=memberList.size();
     }
