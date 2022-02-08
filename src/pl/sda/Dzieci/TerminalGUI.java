@@ -71,12 +71,15 @@ public class TerminalGUI {
                     break;
                 case 5:
                     System.out.println("Wybrałes 5.");
+                    grupa.usunDuplikaty();
                     break;
                 case 6:
                     System.out.println("Wybrałes 6.");
+                    grupa.touper();
                     break;
                 case 7:
                     System.out.println("Wybrałes 7.");
+                    grupa.tolower();
                     break;
                 case 8:
                     System.out.println("Wybrałes 8.");

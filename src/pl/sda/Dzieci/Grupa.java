@@ -1,13 +1,13 @@
 package pl.sda.Dzieci;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import pl.sda.Kolekcje.DaneKolekcji;
 
-public class Grupa {
+import java.util.*;
+
+public class Grupa implements IDziecko{
 
     private String nazwaGrupy;
-    private List<Dziecko> listaDzieci=new ArrayList<>();
+    private List<Dziecko> listaDzieci = new ArrayList<>();
     private int rozmiarGrupy;
     private int aktualnaLiczbaDzieciwGrupie;
 
@@ -44,12 +44,20 @@ public class Grupa {
         this.rozmiarGrupy = rozmiarGrupy;
     }
 
-    public void dodajDziecko(Dziecko dziecko){
+
+    @Override
+    public void dodajDziecko(Dziecko dziecko) {
         listaDzieci.add(dziecko);
+        aktualnaLiczbaDzieciwGrupie++;
     }
 
-    public void sortuj(){
+    @Override
+    public void usunDziecko(Dziecko dziecko) {
 
+    }
+
+    public void sortuj() {
+        listaDzieci.sort(new KomparatorImie());
     }
 
     @Override
@@ -60,5 +68,23 @@ public class Grupa {
                 ", rozmiarGrupy=" + rozmiarGrupy +
                 ", aktualnaLiczbaDzieciwGrupie=" + aktualnaLiczbaDzieciwGrupie +
                 '}';
+    }
+
+    public void tolower() {
+        for (Dziecko element : listaDzieci) {
+            element.setImie(element.getImie().toLowerCase());
+        }
+    }
+
+    public void touper() {
+        for (Dziecko element : listaDzieci) {
+            element.setImie(element.getImie().toUpperCase());
+        }
+    }
+
+    public void usunDuplikaty() {
+        Set<Dziecko> bezDuplikatow = new LinkedHashSet<>(listaDzieci);
+        listaDzieci = new ArrayList<>(bezDuplikatow);
+        aktualnaLiczbaDzieciwGrupie= listaDzieci.size();
     }
 }

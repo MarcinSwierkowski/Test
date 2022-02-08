@@ -32,6 +32,10 @@ public class Dziecko {
         return Objects.hash(imie, pesel);
     }
 
+    public void setImie(String imie) {
+        this.imie = imie;
+    }
+
     @Override
     public String toString() {
         return "Dziecko{" +

@@ -48,9 +48,12 @@ public class ArrayListy {
 
 
 
+
+
         for (DaneKolekcji elementy: pracownicy) {
             System.out.println(elementy);
         }
+
 
     }
 }
