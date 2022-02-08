@@ -1,10 +1,8 @@
 package pl.sda.Dzieci;
 
-import pl.sda.Kolekcje.DaneKolekcji;
-
 import java.util.*;
 
-public class Grupa implements IDziecko{
+public class Grupa implements IGrupa {
 
     private String nazwaGrupy;
     private List<Dziecko> listaDzieci = new ArrayList<>();
@@ -48,12 +46,13 @@ public class Grupa implements IDziecko{
     @Override
     public void dodajDziecko(Dziecko dziecko) {
         listaDzieci.add(dziecko);
-        aktualnaLiczbaDzieciwGrupie++;
+        aktualnaLiczbaDzieciwGrupie= listaDzieci.size();
     }
 
     @Override
     public void usunDziecko(Dziecko dziecko) {
-
+        listaDzieci.remove(dziecko);
+        aktualnaLiczbaDzieciwGrupie= listaDzieci.size();
     }
 
     public void sortuj() {
@@ -83,8 +82,8 @@ public class Grupa implements IDziecko{
     }
 
     public void usunDuplikaty() {
-        Set<Dziecko> bezDuplikatow = new LinkedHashSet<>(listaDzieci);
+        Set<Dziecko> bezDuplikatow = new HashSet<>(listaDzieci);
         listaDzieci = new ArrayList<>(bezDuplikatow);
-        aktualnaLiczbaDzieciwGrupie= listaDzieci.size();
+        aktualnaLiczbaDzieciwGrupie = listaDzieci.size();
     }
 }

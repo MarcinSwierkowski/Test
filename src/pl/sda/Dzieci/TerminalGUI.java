@@ -1,15 +1,15 @@
 package pl.sda.Dzieci;
 
-import java.util.Collections;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class TerminalGUI {
 
-    private Grupa grupa;
+    private final static String MENU = null; // tutaj menu text ...
 
-    public TerminalGUI(Grupa grupa) {
+    private IGrupa grupa;
+
+    public TerminalGUI(IGrupa grupa) {
         this.grupa = grupa;
     }
 
@@ -17,7 +17,7 @@ public class TerminalGUI {
 
         int opcja =0;
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in); // TODO przerobic do zmiennej klasowej
         System.out.println("---------------------- MENU -----------------------");
         System.out.println("---------------------------------------------------");
         System.out.println("1. Dodaj dziecko do listy");
