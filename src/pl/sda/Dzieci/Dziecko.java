@@ -38,9 +38,6 @@ public class Dziecko {
 
     @Override
     public String toString() {
-        return "Dziecko{" +
-                "imie='" + imie + '\'' +
-                ", pesel='" + pesel + '\'' +
-                '}';
+        return " "+imie +"-" + pesel+" ";
     }
 }

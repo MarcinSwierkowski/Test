@@ -6,12 +6,9 @@ public class Grupa implements IGrupa {
 
     private String nazwaGrupy;
     private List<Dziecko> listaDzieci = new ArrayList<>();
-    private int rozmiarGrupy;
-    private int aktualnaLiczbaDzieciwGrupie;
 
-    public Grupa(String nazwaGrupy, int rozmiarGrupy) {
+    public Grupa(String nazwaGrupy) {
         this.nazwaGrupy = nazwaGrupy;
-        this.rozmiarGrupy = rozmiarGrupy;
     }
 
     public String getNazwaGrupy() {
@@ -22,37 +19,26 @@ public class Grupa implements IGrupa {
         return listaDzieci;
     }
 
-    public int getRozmiarGrupy() {
-        return rozmiarGrupy;
-    }
 
     public void setNazwaGrupy(String nazwaGrupy) {
         this.nazwaGrupy = nazwaGrupy;
     }
 
-    public int getAktualnaLiczbaDzieciwGrupie() {
-        return aktualnaLiczbaDzieciwGrupie;
-    }
-
-    public void setAktualnaLiczbaDzieciwGrupie(int aktualnaLiczbaDzieciwGrupie) {
-        this.aktualnaLiczbaDzieciwGrupie = aktualnaLiczbaDzieciwGrupie;
-    }
-
-    public void setRozmiarGrupy(int rozmiarGrupy) {
-        this.rozmiarGrupy = rozmiarGrupy;
-    }
 
 
     @Override
     public void dodajDziecko(Dziecko dziecko) {
         listaDzieci.add(dziecko);
-        aktualnaLiczbaDzieciwGrupie= listaDzieci.size();
     }
 
     @Override
     public void usunDziecko(Dziecko dziecko) {
-        listaDzieci.remove(dziecko);
-        aktualnaLiczbaDzieciwGrupie= listaDzieci.size();
+        if(listaDzieci.remove(dziecko)){
+            System.out.println("Dziecko usunięte z listy");
+        }
+        else {
+            System.out.println("Dzieciaka nie ma na liscie więc go nie usunę.");
+        }
     }
 
     public void sortuj() {
@@ -64,8 +50,6 @@ public class Grupa implements IGrupa {
         return "Grupa{" +
                 "nazwaGrupy='" + nazwaGrupy + '\'' +
                 ", listaDzieci=" + listaDzieci +
-                ", rozmiarGrupy=" + rozmiarGrupy +
-                ", aktualnaLiczbaDzieciwGrupie=" + aktualnaLiczbaDzieciwGrupie +
                 '}';
     }
 
@@ -84,6 +68,5 @@ public class Grupa implements IGrupa {
     public void usunDuplikaty() {
         Set<Dziecko> bezDuplikatow = new HashSet<>(listaDzieci);
         listaDzieci = new ArrayList<>(bezDuplikatow);
-        aktualnaLiczbaDzieciwGrupie = listaDzieci.size();
     }
 }
