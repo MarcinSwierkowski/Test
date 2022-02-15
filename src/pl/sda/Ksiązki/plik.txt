@@ -1,0 +1,20 @@
+Duma i uprzedzenie;Jane Austen;1813;1;28;380
+Władca Pierścieni Dwie Wieże;John Ronald Reuel Tolkien;1954;11;11;501
+Jane Eyre;Charlotte Bronte;1847;10;16;608
+Zabić drozda;Harper Le;1960;7;11;296
+Rok 1984;George Orwel;1949;6;8;328
+Wielkie nadzieje;Charles Dickens;1861;8;8;544
+Małe kobietki;Louisa May Alcott;1875;11;5;759
+Tessa D’Urberville;Thomas Hardy;1891;6;21;592
+Paragraf 22;Joseph Heller;1961;4;21;453
+Wielki Gatsby;Francis Scott Fitzgerald;1925;4;17;200
+Chłopiec z latawcem;Khaled Hossein;2003;7;22;372
+Kod Da Vinci;Dan Brown;2003;10;5;568
+Opowieść podręcznej;Margaret Atwood;1985;2;10;368
+Władca much;William Golding;1954;6;12;224
+Diuna;Frank Herbert;1965;7;30;412
+Cold Comfort Farm;Stella Gibbons;1932;1;21;307
+Sto lat samotności;Gabriel Garcia Marquez;1974;11;4;456
+Pokuta;Ian McEwan;2001;7;9;400
+Życie Pi;Yann Martel;2001;4;8;376
+Cień wiatru;Carlos Ruiz Zafon;2001;5;9;520
