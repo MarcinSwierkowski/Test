@@ -44,12 +44,12 @@ public class Snake {
             body.get(i).setLocation(body.get(i-1));
         }
 
-        switch (direction) {
-            case D -> getHead().y++;
-            case U -> getHead().y--;
-            case R -> getHead().x++;
-            case L -> getHead().x--;
-        }
+//        switch (direction) {
+//            case D -> getHead().y++;
+//            case U -> getHead().y--;
+//            case R -> getHead().x++;
+//            case L -> getHead().x--;
+//        }
 
 
     }
