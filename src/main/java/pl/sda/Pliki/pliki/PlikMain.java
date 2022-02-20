@@ -1,6 +1,6 @@
 package pl.sda.Pliki.pliki;
 
-import pl.sda.java105.funkcyjne.tomek.Student;
+import pl.sda.Streamy.Student;
 
 import java.io.*;
 

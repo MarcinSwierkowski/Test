@@ -9,77 +9,80 @@ public class SingletonConfig {
     private static final SingletonConfig instance = new SingletonConfig();
 
     public SingletonConfig() {
-        initTalia();
     }
 
     public static SingletonConfig getInstance() {
         return instance;
     }
 
-    List<KartaDoGry> talia = new ArrayList<>();
-    int liczbaGraczy = 9;
 
-    private void initTalia() {
+    private final int liczbaGraczy = 2;
 
-        List<KartaDoGry> lista = Arrays.asList(
-                new KartaDoGry("2", 2, "Kier", 1),
-                new KartaDoGry("3", 3, "Kier", 1),
-                new KartaDoGry("4", 4, "Kier", 1),
-                new KartaDoGry("5", 5, "Kier", 1),
-                new KartaDoGry("6", 6, "Kier", 1),
-                new KartaDoGry("7", 7, "Kier", 1),
-                new KartaDoGry("8", 8, "Kier", 1),
-                new KartaDoGry("9", 9, "Kier", 1),
-                new KartaDoGry("10", 10, "Kier", 1),
-                new KartaDoGry("J", 11, "Kier", 1),
-                new KartaDoGry("D", 12, "Kier", 1),
-                new KartaDoGry("K", 13, "Kier", 1),
-                new KartaDoGry("A", 14, "Kier", 1),
+    private final List<KartaDoGry> talia = Arrays.asList(
 
-                new KartaDoGry("2", 2, "Karo", 2),
-                new KartaDoGry("3", 3, "Karo", 2),
-                new KartaDoGry("4", 4, "Karo", 2),
-                new KartaDoGry("5", 5, "Karo", 2),
-                new KartaDoGry("6", 6, "Karo", 2),
-                new KartaDoGry("7", 7, "Karo", 2),
-                new KartaDoGry("8", 8, "Karo", 2),
-                new KartaDoGry("9", 9, "Karo", 2),
-                new KartaDoGry("10", 10, "Karo", 2),
-                new KartaDoGry("J", 11, "Karo", 2),
-                new KartaDoGry("D", 12, "Karo", 2),
-                new KartaDoGry("K", 13, "Karo", 2),
-                new KartaDoGry("A", 14, "Karo", 2),
+                new KartaDoGry(Figura.DWOJKA, Kolor.KIER),
+                new KartaDoGry(Figura.TROJKA, Kolor.KIER),
+                new KartaDoGry(Figura.CZWORKA, Kolor.KIER),
+                new KartaDoGry(Figura.PIATKA, Kolor.KIER),
+                new KartaDoGry(Figura.SZOSTKA, Kolor.KIER),
+                new KartaDoGry(Figura.SIODEMKA, Kolor.KIER),
+                new KartaDoGry(Figura.OSEMKA, Kolor.KIER),
+                new KartaDoGry(Figura.DZIEWIATKA, Kolor.KIER),
+                new KartaDoGry(Figura.DZIESIATKA, Kolor.KIER),
+                new KartaDoGry(Figura.WALET, Kolor.KIER),
+                new KartaDoGry(Figura.DAMA, Kolor.KIER),
+                new KartaDoGry(Figura.KROL, Kolor.KIER),
+                new KartaDoGry(Figura.AS, Kolor.KIER),
 
-                new KartaDoGry("2", 2, "Pik", 3),
-                new KartaDoGry("3", 3, "Pik", 3),
-                new KartaDoGry("4", 4, "Pik", 3),
-                new KartaDoGry("5", 5, "Pik", 3),
-                new KartaDoGry("6", 6, "Pik", 3),
-                new KartaDoGry("7", 7, "Pik", 3),
-                new KartaDoGry("8", 8, "Pik", 3),
-                new KartaDoGry("9", 9, "Pik", 3),
-                new KartaDoGry("10", 10, "Pik", 3),
-                new KartaDoGry("J", 11, "Pik", 3),
-                new KartaDoGry("D", 12, "Pik", 3),
-                new KartaDoGry("K", 13, "Pik", 3),
-                new KartaDoGry("A", 14, "Pik", 3),
+                new KartaDoGry(Figura.DWOJKA, Kolor.KARO),
+                new KartaDoGry(Figura.TROJKA, Kolor.KARO),
+                new KartaDoGry(Figura.CZWORKA, Kolor.KARO),
+                new KartaDoGry(Figura.PIATKA, Kolor.KARO),
+                new KartaDoGry(Figura.SZOSTKA, Kolor.KARO),
+                new KartaDoGry(Figura.SIODEMKA, Kolor.KARO),
+                new KartaDoGry(Figura.OSEMKA, Kolor.KARO),
+                new KartaDoGry(Figura.DZIEWIATKA, Kolor.KARO),
+                new KartaDoGry(Figura.DZIESIATKA, Kolor.KARO),
+                new KartaDoGry(Figura.WALET, Kolor.KARO),
+                new KartaDoGry(Figura.DAMA, Kolor.KARO),
+                new KartaDoGry(Figura.KROL, Kolor.KARO),
+                new KartaDoGry(Figura.AS, Kolor.KARO),
 
-                new KartaDoGry("2", 2, "Trefl", 4),
-                new KartaDoGry("3", 3, "Trefl", 4),
-                new KartaDoGry("4", 4, "Trefl", 4),
-                new KartaDoGry("5", 5, "Trefl", 4),
-                new KartaDoGry("6", 6, "Trefl", 4),
-                new KartaDoGry("7", 7, "Trefl", 4),
-                new KartaDoGry("8", 8, "Trefl", 4),
-                new KartaDoGry("9", 9, "Trefl", 4),
-                new KartaDoGry("10", 10, "Trefl", 4),
-                new KartaDoGry("J", 11, "Trefl", 4),
-                new KartaDoGry("D", 12, "Trefl", 4),
-                new KartaDoGry("K", 13, "Trefl", 4),
-                new KartaDoGry("A", 14, "Trefl", 4)
+                new KartaDoGry(Figura.DWOJKA, Kolor.PIK),
+                new KartaDoGry(Figura.TROJKA, Kolor.PIK),
+                new KartaDoGry(Figura.CZWORKA, Kolor.PIK),
+                new KartaDoGry(Figura.PIATKA, Kolor.PIK),
+                new KartaDoGry(Figura.SZOSTKA, Kolor.PIK),
+                new KartaDoGry(Figura.SIODEMKA, Kolor.PIK),
+                new KartaDoGry(Figura.OSEMKA, Kolor.PIK),
+                new KartaDoGry(Figura.DZIEWIATKA, Kolor.PIK),
+                new KartaDoGry(Figura.DZIESIATKA, Kolor.PIK),
+                new KartaDoGry(Figura.WALET, Kolor.PIK),
+                new KartaDoGry(Figura.DAMA, Kolor.PIK),
+                new KartaDoGry(Figura.KROL, Kolor.PIK),
+                new KartaDoGry(Figura.AS, Kolor.PIK),
+
+                new KartaDoGry(Figura.DWOJKA, Kolor.TREFL),
+                new KartaDoGry(Figura.TROJKA, Kolor.TREFL),
+                new KartaDoGry(Figura.CZWORKA, Kolor.TREFL),
+                new KartaDoGry(Figura.PIATKA, Kolor.TREFL),
+                new KartaDoGry(Figura.SZOSTKA, Kolor.TREFL),
+                new KartaDoGry(Figura.SIODEMKA, Kolor.TREFL),
+                new KartaDoGry(Figura.OSEMKA, Kolor.TREFL),
+                new KartaDoGry(Figura.DZIEWIATKA, Kolor.TREFL),
+                new KartaDoGry(Figura.DZIESIATKA, Kolor.TREFL),
+                new KartaDoGry(Figura.WALET, Kolor.TREFL),
+                new KartaDoGry(Figura.DAMA, Kolor.TREFL),
+                new KartaDoGry(Figura.KROL, Kolor.TREFL),
+                new KartaDoGry(Figura.AS, Kolor.TREFL)
         );
-        talia=lista;
 
+    public int getLiczbaGraczy() {
+        return liczbaGraczy;
+    }
+
+    public List<KartaDoGry> getTalia() {
+        return talia;
     }
 }
 

@@ -1,31 +1,55 @@
 package pl.sda.WojnaKolekcje;
 
-public class KartaDoGry {
+import java.util.Objects;
 
-    private String figura;
-    private int mocFigury;
-    private String kolor;
-    private int mocKoloru;
+public class KartaDoGry implements Comparable<KartaDoGry> {
 
-    public KartaDoGry(String figura, int mocFigury, String kolor, int mocKoloru) {
+    private Figura figura;
+    private Kolor kolor;
+
+    public KartaDoGry(Figura figura, Kolor kolor) {
         this.figura = figura;
-        this.mocFigury = mocFigury;
         this.kolor = kolor;
-        this.mocKoloru = mocKoloru;
     }
 
-    public int getMocFigury() {
-        return mocFigury;
+    public Figura getFigura() {
+        return figura;
     }
 
-    public void showCard(){
-        System.out.println(figura + " " + kolor);
+    public Kolor getKolor() {
+        return kolor;
     }
 
     @Override
     public String toString() {
-        return  figura +"-" +kolor;
+        return figura.getSymbol() + kolor.getSymbol();
 
+    }
+
+
+    @Override
+    public int compareTo(KartaDoGry o) {
+        if (this.figura.getMocFigury() > o.figura.getMocFigury()) return 1;
+        else if (this.figura.getMocFigury() < o.figura.getMocFigury()) return -1;
+
+        else {
+            if (this.kolor.getMocKoloru() > o.kolor.getMocKoloru()) return 1;
+            else if (this.kolor.getMocKoloru() < o.kolor.getMocKoloru()) return -1;
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        KartaDoGry that = (KartaDoGry) o;
+        return figura == that.figura && kolor == that.kolor;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(figura, kolor);
     }
 }
 
