@@ -8,7 +8,9 @@ public class GameApp {
     static final int liczbaGraczy = SingletonConfig.getInstance().getLiczbaGraczy();
     static int loser = 0;
     static boolean duplikat = false;
-
+    static int winnercounter =0;
+    static  boolean decyzja = false;
+    static  int winnerindex =0;
 
     public static void main(String[] args) {
 
@@ -33,50 +35,53 @@ public class GameApp {
         List<KartaDoGry> pula = new ArrayList<>();
 
 
-        WyciagnijKarte2(map, rozdanie, gracze);
+        //WyciagnijKarte2(map, rozdanie, gracze);
 
         System.out.println("Rozdanie : ");
         System.out.println(map);
 
 
-//        while (loser<liczbaGraczy-1 && pula.size()!=52){
-//            duplikat = false;
-//            checkLoosers(gracze);
-//            WyciagnijKarte(map,rozdanie,gracze);
-//            pula.addAll(rozdanie);
-//            rozdanie.clear();
-//
-//            // ZROBIONE : wersja gry dla wielu graczy : jesli istnieje wojna wszyscy walczą.
-//            // probemy przy wiekszej ilosci graczy wojna jest czesta i zaraz w puli znajdują sie wszystkie karty.
-//            // TODO : zrobić wersje gdy walczą tylko gracze o takich samych kartach reszta kart na stole idzie łupem wojny
-//            // TODO : wojna jest tylko wtedy gdy karty wojujące sa najwyzsze w rozdaniu jesli nie to zabiera je najwyzsza karta
-//            // TODO : POSPRZĄTAĆ i poprzenosić metody i zmienne w optymalne miejsca
-//
-//
-//            if (duplikat) {        // wojna bo są duplikaty
-//                for (int i = 0; i < liczbaGraczy; i++) {
-//                    if(gracze.get(i).getReka().size()>0) {
-//                        rozdanie.add(gracze.get(i).getReka().poll());
-//                    }
-//                }
-//                System.out.println("WOJNA !!!");
-//                pula.addAll(rozdanie);
-//                rozdanie.clear();
-//            }
-//            else  wygranyZabieraKarty(map, gracze, pula);
-//
-//
-//            int sumaKart=0;
-//            for (int i = 0; i < liczbaGraczy; i++) {
-//
-//                System.out.println(gracze.get(i).getReka() + " " + gracze.get(i).getReka().size() + " " + gracze.get(i).getName());
-//                sumaKart=sumaKart+gracze.get(i).getReka().size();
-//            }
-//            System.out.println("Suma kart u graczy :"+sumaKart);
-//            System.out.println("Suma kart w puli :"+pula.size());
-//
-//            if(pula.size()==52) System.out.println("Gra nierozszczygnięta !!!!");
-//        }
+        while (loser<liczbaGraczy-1 && pula.size()!=52){
+
+                duplikat = false;
+                checkLoosers(gracze);
+                WyciagnijKarte2(map, rozdanie, gracze);
+                pula.addAll(rozdanie);
+                rozdanie.clear();
+
+                if (duplikat && winnercounter > 1) {        // wojna bo są duplikaty na najwiekszych kartach
+                    for (int i = 0; i < liczbaGraczy; i++) {
+                        if (gracze.get(i).getReka().size() > 0) {
+                            rozdanie.add(gracze.get(i).getReka().poll());
+                        }
+                    }
+                    System.out.println("WOJNA !!!");
+                    pula.addAll(rozdanie);
+                    rozdanie.clear();
+
+                    checkLoosers(gracze);
+
+                    for (int i = 0; i < liczbaGraczy; i++) {
+                        if (gracze.get(i).getReka().size() > 0 && gracze.get(i).isCzyWykladaKarte()) {
+                            rozdanie.add(gracze.get(i).getReka().poll());
+                        }
+                    }
+            }
+            else  wygranyZabieraKarty(map, gracze, pula,winnerindex);
+
+
+
+            int sumaKart=0;
+            for (int i = 0; i < liczbaGraczy; i++) {
+
+                System.out.println(gracze.get(i).getReka() + " " + gracze.get(i).getReka().size() + " " + gracze.get(i).getName());
+                sumaKart=sumaKart+gracze.get(i).getReka().size();
+            }
+            System.out.println("Suma kart u graczy :"+sumaKart);
+            System.out.println("Suma kart w puli :"+pula.size());
+
+            if(pula.size()==52) System.out.println("Gra nierozszczygnięta !!!!");
+        }
     }
 
     private static void checkLoosers(List<Gracz> gracze) {
@@ -116,12 +121,15 @@ public class GameApp {
 
         KartaDoGry maxValue = (Collections.max(map.values()));
 
-        int winnercounter=0;
+
+
+        winnercounter=0;
 
         for (Map.Entry<Integer, KartaDoGry> entry :
                 map.entrySet()) {
             if (entry.getValue().getFigura().getMocFigury() == maxValue.getFigura().getMocFigury()) {
                 winnercounter++;
+                winnerindex = entry.getKey();
             }
         }
 
@@ -135,11 +143,7 @@ public class GameApp {
         }
     }
 
-    private static void wygranyZabieraKarty(Map<Integer, Integer> map, List<Gracz> gracze, List<KartaDoGry> pula) {
-
-        int winner = map.entrySet().stream()
-                .map(n -> n.getValue())
-                .collect(Collectors.toList()).get(liczbaGraczy - 1 - loser);
+    private static void wygranyZabieraKarty(Map<Integer, KartaDoGry> map, List<Gracz> gracze, List<KartaDoGry> pula,int winner) {
 
         System.out.println(gracze.get(winner).getName() + " zabiera karty " + pula + "-" + pula.size());
 
