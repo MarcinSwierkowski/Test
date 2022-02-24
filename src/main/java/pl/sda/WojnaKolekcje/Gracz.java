@@ -10,6 +10,7 @@ public class Gracz {
     private int id;
     private String name;
     private Queue<KartaDoGry> reka = new LinkedList<>();
+    private boolean czyWykladaKarte = true;
 
     public Gracz(int id, String name) {
         this.id = id;
@@ -30,6 +31,14 @@ public class Gracz {
 
     public int getId() {
         return id;
+    }
+
+    public boolean isCzyWykladaKarte() {
+        return czyWykladaKarte;
+    }
+
+    public void setCzyWykladaKarte(boolean czyWykladaKarte) {
+        this.czyWykladaKarte = czyWykladaKarte;
     }
 
     public void setId(int id) {

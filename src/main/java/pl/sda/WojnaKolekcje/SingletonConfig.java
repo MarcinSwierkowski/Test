@@ -16,7 +16,7 @@ public class SingletonConfig {
     }
 
 
-    private final int liczbaGraczy = 2;
+    private final int liczbaGraczy = 8;
 
     private final List<KartaDoGry> talia = Arrays.asList(
 
