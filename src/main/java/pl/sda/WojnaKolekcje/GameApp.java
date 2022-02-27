@@ -15,13 +15,13 @@ public class GameApp {
 
         List<Gracz> gracze = new ArrayList<>();
         for (int i = 0; i < liczbaGraczy; i++) {
-            gracze.add(new Gracz(i, "Gracz_" + i));
+            gracze.add(new Gracz(i, "Gracz_" + (i+1)));
         }
 
         rozdajKarty(gracze, aktualnaTalia);
 
         for (int i = 0; i < liczbaGraczy; i++) {
-            System.out.println(gracze.get(i).getReka() + " " + gracze.get(i).getReka().size() + " " + gracze.get(i).getName());
+            System.out.println(gracze.get(i).getName()+" "+gracze.get(i).getReka());
         }
 
 
@@ -37,7 +37,7 @@ public class GameApp {
             int sumaKart=0;
             for (int i = 0; i < liczbaGraczy; i++) {
 
-                System.out.println(gracze.get(i).getReka() + " " + gracze.get(i).getReka().size() + " " + gracze.get(i).getName());
+                System.out.println(gracze.get(i).getName()+" "+gracze.get(i).getReka());
                 sumaKart=sumaKart+gracze.get(i).getReka().size();
             }
             System.out.println("Suma kart u graczy :"+sumaKart);
