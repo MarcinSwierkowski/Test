@@ -1,8 +1,6 @@
 package pl.sda.WojnaKolekcje;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class Gracz {
@@ -21,10 +19,6 @@ public class Gracz {
         return reka;
     }
 
-    public void setReka(Queue<KartaDoGry> reka) {
-        this.reka = reka;
-    }
-
     public void dodajKartę(KartaDoGry karta){
         reka.add(karta);
     }
@@ -39,10 +33,6 @@ public class Gracz {
 
     public void setCzyWykladaKarte(boolean czyWykladaKarte) {
         this.czyWykladaKarte = czyWykladaKarte;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setName(String name) {

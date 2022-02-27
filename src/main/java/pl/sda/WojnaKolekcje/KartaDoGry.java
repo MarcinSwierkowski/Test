@@ -16,9 +16,6 @@ public class KartaDoGry implements Comparable<KartaDoGry> {
         return figura;
     }
 
-    public Kolor getKolor() {
-        return kolor;
-    }
 
     @Override
     public String toString() {
