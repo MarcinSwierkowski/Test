@@ -1,5 +1,7 @@
 package pl.sda.Plansza;
 
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,8 +16,8 @@ public class SingletonConfig {
         return instance;
     }
 
-    int rozmiarPlanszyX = 20;
-    int rozmiarPlanszyY = 20;
+    int rozmiarPlanszyX = 40;
+    int rozmiarPlanszyY = 40;
 
     int iloscWojownikow = 10;
     int iloscApteczek = 5;
@@ -48,7 +50,7 @@ public class SingletonConfig {
         Random random = new Random();
         for (int i = 1; i <= iloscWojownikow; i++) {
             String nazwa="Wojownik_"+i;
-            String symbol="W";
+            String symbol="\u001B[31mW\u001B[0m";
             int lifeLevel = 100;
             int power = random.nextInt(30);
             int pozycjaX = random.nextInt(rozmiarPlanszyX);
@@ -107,18 +109,6 @@ public class SingletonConfig {
         wojownikList.removeIf(n -> n.getLifeLevel() <= 0);
     }
 
-
-    public void rysujPlansze() {
-        String znak = "";
-        for (int i = 0; i < rozmiarPlanszyY; i++) {
-            for (int j = 0; j < rozmiarPlanszyX; j++) {
-                if (plansza[j][i] == null) znak = ".";
-                else znak=plansza[j][i];
-                System.out.print(znak);
-            }
-            System.out.println();
-        }
-    }
 
     public void wyczyscPlansze(){
         for (int i = 0; i < rozmiarPlanszyY; i++) {

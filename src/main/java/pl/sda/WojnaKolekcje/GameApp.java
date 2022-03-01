@@ -2,10 +2,22 @@ package pl.sda.WojnaKolekcje;
 
 import java.util.*;
 
+// Gra wg nastepujących zasad:
+// - rodzajemy potasowaną talie kart (52-karty) w kółko dla x-graczy od 2-52
+// - kazdy gracz ma swoją kolejke kart może wyciągać tylko z przodu i wkładać zdobyte karty z tyłu kolejki
+// - wszyscy gracze mający przynajmniej 1 karte wyrzucają karte na stół
+// - z grających kart najwyższa zabiera wszystkie karty ze stołu
+// - chyba ze jest więcej najwyzszych kart , wtedy WOJNA
+// - w wojnie karty uczestniczą tylko ci którzy mieli najwyzsze równe sobie karty
+// - dokładają karte nie uczestniczącą w wojnie tzw strata wojenna
+// - i dokładaja karte decydująca o wygranej w wojnie
+// - jesli znowu wojna ... wsród uczestników wojny .... to rekurencja
+// - jesli nie to najwyzsza karta bierze pule ze stołu i od nowa
+
 public class GameApp {
 
     static final int liczbaGraczy = SingletonConfig.getInstance().getLiczbaGraczy();
-    static int loser = 0;
+    static int liczbaPrzegranych = 0;
 
     public static void main(String[] args) {
 
@@ -29,10 +41,10 @@ public class GameApp {
         Map<Integer, KartaDoGry> map = new TreeMap<>();
         List<KartaDoGry> rozdanie = new ArrayList<>();
 
-        while (loser<liczbaGraczy-1 && rozdanie.size()!=52){
+        while (liczbaPrzegranych <liczbaGraczy-1 && rozdanie.size()!=52){
 
-                checkLoosers(gracze);
-                RzucKarte(map, rozdanie, gracze);
+                sprawdzIluPrzegranych(gracze);
+                wylosujKarte(map, rozdanie, gracze);
 
             int sumaKart=0;
             for (int i = 0; i < liczbaGraczy; i++) {
@@ -47,9 +59,9 @@ public class GameApp {
     }
 
 
-    private static void RzucKarte(Map<Integer, KartaDoGry> map, List<KartaDoGry> rozdanie, List<Gracz> gracze) {
-        int winnercounter;
-        int winnerindex =1000;
+    private static void wylosujKarte(Map<Integer, KartaDoGry> map, List<KartaDoGry> rozdanie, List<Gracz> gracze) {
+        int iluZwyciezcow;
+        int indexZwyciezcy =1000;
         map.clear();
         for (int i = 0; i < liczbaGraczy; i++) {
             if (gracze.get(i).getReka().size() > 0 && gracze.get(i).isCzyWykladaKarte()) {
@@ -58,25 +70,25 @@ public class GameApp {
             }
         }
 
-        checkLoosers(gracze);
+        sprawdzIluPrzegranych(gracze);
 
 
         if(map.size()>1) {
             KartaDoGry maxValue = (Collections.max(map.values()));      // map najwieksza karta w grze
 
-            winnercounter = 0;
+            iluZwyciezcow = 0;
             // sprawdzam czy w grze sa jeszcze inne najwieksze karty
             for (Map.Entry<Integer, KartaDoGry> entry :
                     map.entrySet()) {
                 if (entry.getValue().getFigura().getMocFigury() == maxValue.getFigura().getMocFigury()) {
-                    winnercounter++;
-                    winnerindex = entry.getKey();
+                    iluZwyciezcow++;
+                    indexZwyciezcy = entry.getKey();
                 }
             }
             // jesli są to ustawiam 'wykłada karte' na true tylko dla grających w wojnie
             // tu  muszę zawsze ustawiać wszystkivh do wykłądania kart więc odwrotnośc w logice
             // wyłącze możliwośc wykładania kart graczom nie uczestniczącym w wojnie
-            if (winnercounter > 1) {
+            if (iluZwyciezcow > 1) {
                 for (Map.Entry<Integer, KartaDoGry> entry :
                         map.entrySet()) {
                     if (entry.getValue().getFigura().getMocFigury() != maxValue.getFigura().getMocFigury()) {
@@ -84,21 +96,21 @@ public class GameApp {
                     }
                 }
                 System.out.println("WOJNA!!!");
-                // wlożenie kart wojennych do puli
+                // wlożenie kart wojennych do puli, jesli gracz nie może bo nie ma karty na wyłożenie konczy grę, skoro tu dotarł ma przynajmniej 1 karte
                 for (int i = 0; i < liczbaGraczy; i++) {
                     if (gracze.get(i).getReka().size() > 0 && gracze.get(i).isCzyWykladaKarte()) {
                         rozdanie.add(gracze.get(i).getReka().poll());
                     }
                 }
-                RzucKarte(map, rozdanie, gracze);     //rekurencja :)
+                wylosujKarte(map, rozdanie, gracze);     //rekurencja :)
             }
-            wygranyZabieraKarty(gracze, rozdanie, winnerindex);
-            checkLoosers(gracze);
+            zwyciezcaZabieraKarty(gracze, rozdanie, indexZwyciezcy);
+            sprawdzIluPrzegranych(gracze);
         }
     }
 
 
-    private static void wygranyZabieraKarty(List<Gracz> gracze, List<KartaDoGry> pula,int winner) {
+    private static void zwyciezcaZabieraKarty(List<Gracz> gracze, List<KartaDoGry> pula, int winner) {
 
             System.out.println(gracze.get(winner).getName() + " zabiera karty " + pula + "-" + pula.size());
             gracze.get(winner).getReka().addAll(pula);
@@ -111,18 +123,18 @@ public class GameApp {
 
 
     private static void rozdajKarty(List<Gracz> gracze, List<KartaDoGry> talia) {
-        int counter = 0;
+        int licznik = 0;
         do {
-            gracze.get(counter % liczbaGraczy).dodajKartę(talia.get(counter));
-            counter++;
-        } while (counter < 52);
+            gracze.get(licznik % liczbaGraczy).dodajKartę(talia.get(licznik));
+            licznik++;
+        } while (licznik < 52);
     }
 
-    private static void checkLoosers(List<Gracz> gracze) {
-        int sum = 0;
+    private static void sprawdzIluPrzegranych(List<Gracz> gracze) {
+        int suma = 0;
         for (int i = 0; i < liczbaGraczy; i++) {
-            if (gracze.get(i).getReka().size() == 0) sum++;
+            if (gracze.get(i).getReka().size() == 0) suma++;
         }
-        loser = sum;
+        liczbaPrzegranych = suma;
     }
 }
