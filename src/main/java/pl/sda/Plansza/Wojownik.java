@@ -61,8 +61,8 @@ public class Wojownik {
         tmpX=pozycjaX;
         tmpY=pozycjaY;
 
-        randomX=3*getXYDirection(-1,1);
-        randomY=3*getXYDirection(-1,1);
+        randomX=getXYDirection(-1,1);
+        randomY=getXYDirection(-1,1);
 
         if(pozycjaX+randomX<0 || pozycjaX+randomX>borderX)
         {
