@@ -5,7 +5,6 @@ public class Wojownik {
     private int pozycjaX;
     private int pozycjaY;
     private String nazwa;
-    private String symbol;
     private int lifeLevel;
     private int power;
 
@@ -14,11 +13,10 @@ public class Wojownik {
     int borderY = SingletonConfig.getInstance().rozmiarPlanszyY -1 ;
 
 
-    public Wojownik(int pozycjaX, int pozycjaY, String nazwa, String symbol, int lifeLevel, int power) {
+    public Wojownik(int pozycjaX, int pozycjaY, String nazwa, int lifeLevel, int power) {
         this.pozycjaX = pozycjaX;
         this.pozycjaY = pozycjaY;
         this.nazwa = nazwa;
-        this.symbol = symbol;
         this.lifeLevel = lifeLevel;
         this.power = power;
     }
@@ -45,10 +43,6 @@ public class Wojownik {
 
     public int getPower() {
         return power;
-    }
-
-    public String getSymbol() {
-        return symbol;
     }
 
     public void setPower(int power) {
@@ -91,7 +85,6 @@ public class Wojownik {
                 "pozycjaX=" + pozycjaX +
                 ", pozycjaY=" + pozycjaY +
                 ", nazwa='" + nazwa + '\'' +
-                ", symbol='" + symbol + '\'' +
                 ", lifeLevel=" + lifeLevel +
                 ", power=" + power +
                 ", borderX=" + borderX +

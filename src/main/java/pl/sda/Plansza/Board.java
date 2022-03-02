@@ -58,11 +58,13 @@ public class Board extends JPanel {
     private void drawBall(Graphics g) {
 
         for (int j = 0; j <SingletonConfig.getInstance().iloscWojownikow ; j++) {
-            x = SingletonConfig.getInstance().wojownikList.get(j).getPozycjaX();
-            y = SingletonConfig.getInstance().wojownikList.get(j).getPozycjaY();
-            g.drawImage(ball, x, y, this);
-            Toolkit.getDefaultToolkit().sync();
+            if(SingletonConfig.getInstance().wojownikList.get(j).getLifeLevel()>0) {
+                x = SingletonConfig.getInstance().wojownikList.get(j).getPozycjaX();
+                y = SingletonConfig.getInstance().wojownikList.get(j).getPozycjaY();
+                g.drawImage(ball, x, y, this);
+            }
         }
+            Toolkit.getDefaultToolkit().sync();
     }
 
     private class ScheduleTask extends TimerTask {
@@ -72,6 +74,7 @@ public class Board extends JPanel {
 
                 for (Wojownik element : SingletonConfig.getInstance().wojownikList) {
                     element.idz();
+                    SingletonConfig.getInstance().sprawdzKonfliktyGraczy();
                 }
             repaint();
         }

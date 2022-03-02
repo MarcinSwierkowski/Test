@@ -36,12 +36,11 @@ public class SingletonConfig {
         Random random = new Random();
         for (int i = 1; i <= iloscApteczek; i++) {
             String nazwa="Apteczka_"+i;
-            String symbol="A";
             int pojemnosc = 30;
             int typ = 1;
             int pozycjaX = random.nextInt(rozmiarPlanszyX);
             int pozycjaY = random.nextInt(rozmiarPlanszyY);
-            Items items = new Items(nazwa,symbol,pozycjaX,pozycjaY,typ,pojemnosc);
+            Items items = new Items(nazwa,pozycjaX,pozycjaY,typ,pojemnosc);
             itemsList.add(items);
         }
     }
@@ -50,27 +49,15 @@ public class SingletonConfig {
         Random random = new Random();
         for (int i = 1; i <= iloscWojownikow; i++) {
             String nazwa="Wojownik_"+i;
-            String symbol="\u001B[31mW\u001B[0m";
             int lifeLevel = 100;
             int power = random.nextInt(30);
             int pozycjaX = random.nextInt(rozmiarPlanszyX);
             int pozycjaY = random.nextInt(rozmiarPlanszyY);
-            Wojownik wojownik = new Wojownik(pozycjaX,pozycjaY,nazwa,symbol,lifeLevel,power);
+            Wojownik wojownik = new Wojownik(pozycjaX,pozycjaY,nazwa,lifeLevel,power);
             wojownikList.add(wojownik);
         }
     }
 
-    public void umiescItemNaPlanszy() {
-        for (Items element : itemsList) {
-            plansza[element.getPozycjaX()][element.getPozycjaY()] = element.getSymbol();
-        }
-    }
-
-    public void umiescWojownikaNaPlanszy() {
-        for (Wojownik element : wojownikList) {
-            plansza[element.getPozycjaX()][element.getPozycjaY()] = element.getSymbol();
-        }
-    }
 
     public void sprawdzKonfliktyGraczy() {
 
@@ -110,13 +97,6 @@ public class SingletonConfig {
     }
 
 
-    public void wyczyscPlansze(){
-        for (int i = 0; i < rozmiarPlanszyY; i++) {
-            for (int j = 0; j < rozmiarPlanszyX; j++) {
-                plansza[j][i]=null;
-            }
-        }
-    }
 
 
 }
