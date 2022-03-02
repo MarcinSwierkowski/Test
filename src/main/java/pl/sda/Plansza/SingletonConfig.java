@@ -16,8 +16,8 @@ public class SingletonConfig {
         return instance;
     }
 
-    int rozmiarPlanszyX = 40;
-    int rozmiarPlanszyY = 40;
+    int rozmiarPlanszyX = 400;
+    int rozmiarPlanszyY = 400;
 
     int iloscWojownikow = 10;
     int iloscApteczek = 5;

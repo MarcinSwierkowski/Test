@@ -16,11 +16,19 @@ public class MyPanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
 
         // prostokat
-        Rectangle2D rectangle = new Rectangle2D.Double(10, 10, 380, 380);
+        Rectangle2D rectangle = new Rectangle2D.Double(10, 10, 40, 40);
         // kolo
-        Ellipse2D circle = new Ellipse2D.Double(10, 10, 380, 380);
+        for (int i = 0; i < 10; i++) {
 
+            Ellipse2D circle = new Ellipse2D.Double(i+100, i+100, 60, 70);
+            g2d.draw(circle);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         g2d.draw(rectangle);
-        g2d.draw(circle);
+
     }
 }
