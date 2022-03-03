@@ -25,7 +25,6 @@ public class ThreadAnimationEx extends JFrame {
     public static void main(String[] args) {
 
         SingletonConfig.getInstance().wygenerujWojownikow();
-
         EventQueue.invokeLater(() -> {
             JFrame ex = new ThreadAnimationEx();
             ex.setVisible(true);

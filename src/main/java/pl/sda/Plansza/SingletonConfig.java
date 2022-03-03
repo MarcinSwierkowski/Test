@@ -1,7 +1,5 @@
 package pl.sda.Plansza;
 
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,10 +22,6 @@ public class SingletonConfig {
     int iloscPulapek = 5;
 
     private String[][] plansza = new String[rozmiarPlanszyX][rozmiarPlanszyY];
-
-    public String[][] getPlansza() {
-        return plansza;
-    }
 
     List<Items> itemsList = new ArrayList<>();
     List<Wojownik> wojownikList = new ArrayList<>();
@@ -53,7 +47,11 @@ public class SingletonConfig {
             int power = random.nextInt(30);
             int pozycjaX = random.nextInt(rozmiarPlanszyX);
             int pozycjaY = random.nextInt(rozmiarPlanszyY);
-            Wojownik wojownik = new Wojownik(pozycjaX,pozycjaY,nazwa,lifeLevel,power);
+            int cyklRuchu = random.nextInt(30)+1;
+            int directionX = getDirection(-2,2);
+            int directionY = getDirection(-2,2);
+
+            Wojownik wojownik = new Wojownik(pozycjaX,pozycjaY,directionX,directionY,cyklRuchu,nazwa,lifeLevel,power);
             wojownikList.add(wojownik);
         }
     }
@@ -101,11 +99,14 @@ public class SingletonConfig {
     public synchronized void sprawdzIluZyje() {
         int count =0;
         for (int i = 0; i < SingletonConfig.getInstance().wojownikList.size(); i++) {
-            if (SingletonConfig.getInstance().wojownikList.get(i).getLifeLevel()>=0)
+            if (SingletonConfig.getInstance().wojownikList.get(i).getLifeLevel()>0)
             count++;
         }
         System.out.println("Aktualnie zyje :"+ count);
     }
 
-
+    public int getDirection(int min, int max) {
+        Random random = new Random();
+        return random.nextInt((max - min + 1)) - max;
+    }
 }

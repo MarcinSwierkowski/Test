@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 
 public class Board extends JPanel {
 
-    private final int B_WIDTH = 400;
-    private final int B_HEIGHT = 400;
+    private final int B_WIDTH = 410;
+    private final int B_HEIGHT = 410;
     private final int INITIAL_DELAY = 100;
     private final int PERIOD_INTERVAL = 25;
 
@@ -51,10 +51,12 @@ public class Board extends JPanel {
     }
 
     private void drawBall(Graphics g) {
+
 //        int count=0;
-//        for (Wojownik wojownik : SingletonConfig.getInstance().wojownikList) {
-//            x = SingletonConfig.getInstance().wojownikList.get(count++).getPozycjaX();
-//            y = SingletonConfig.getInstance().wojownikList.get(count).getPozycjaY();
+//        for (int i=0;i<SingletonConfig.getInstance().wojownikList.size();i++) {
+//            x = SingletonConfig.getInstance().wojownikList.get(i).getPozycjaX();
+//            y = SingletonConfig.getInstance().wojownikList.get(i).getPozycjaY();
+//           g.drawImage(ball, x, y, this);
 //        }
 
         for (int j = 0; j <SingletonConfig.getInstance().iloscWojownikow ; j++) {
@@ -76,6 +78,7 @@ public class Board extends JPanel {
                     element.idz();
                     SingletonConfig.getInstance().sprawdzKonfliktyGraczy();
                     SingletonConfig.getInstance().sprawdzIluZyje();
+                    //SingletonConfig.getInstance().sprawdzKtoNieZyje();
                 }
             repaint();
         }
