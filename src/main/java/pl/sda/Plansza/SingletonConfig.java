@@ -57,7 +57,7 @@ public class SingletonConfig {
     }
 
 
-    public void sprawdzKonfliktyGraczy() {
+    public synchronized void sprawdzKonfliktyGraczy() {
 
         for (int i = 0; i < wojownikList.size() - 1; i++) {
             for (int j = i + 1; j < wojownikList.size(); j++) {
@@ -81,7 +81,7 @@ public class SingletonConfig {
         }
     }
 
-    private boolean czyJestKonflikt(Wojownik wojownik, Wojownik wojownik1) {
+    private synchronized boolean czyJestKonflikt(Wojownik wojownik, Wojownik wojownik1) {
         return (wojownik.getPozycjaX()== wojownik1.getPozycjaX() && wojownik.getPozycjaY()==wojownik1.getPozycjaY());
     }
 

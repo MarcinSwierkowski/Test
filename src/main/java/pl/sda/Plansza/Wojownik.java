@@ -1,5 +1,9 @@
 package pl.sda.Plansza;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.ImageObserver;
+
 public class Wojownik {
 
     private int pozycjaX;
@@ -11,6 +15,7 @@ public class Wojownik {
     private String nazwa;
     private int lifeLevel;
     private int power;
+    private Image ball;
 
 
     int borderX = SingletonConfig.getInstance().rozmiarPlanszyX -1 ;
@@ -26,13 +31,15 @@ public class Wojownik {
         this.nazwa = nazwa;
         this.lifeLevel = lifeLevel;
         this.power = power;
+
+        loadImage();
     }
 
-    public int getPozycjaX() {
+    public synchronized int getPozycjaX() {
         return pozycjaX;
     }
 
-    public int getPozycjaY() {
+    public synchronized int getPozycjaY() {
         return pozycjaY;
     }
 
@@ -77,6 +84,17 @@ public class Wojownik {
         pozycjaY=pozycjaY+randomY;
         }
         cyklCounter++;
+    }
+
+    public void rysujWojownika(Graphics g,Object t){
+
+        g.drawImage(ball, this.pozycjaX, this.pozycjaY, (ImageObserver) t);
+    }
+
+    private void loadImage() {
+
+        ImageIcon ii = new ImageIcon("src/main/java/pl/sda/Plansza/ball.png");
+        ball = ii.getImage();
     }
 
     @Override
