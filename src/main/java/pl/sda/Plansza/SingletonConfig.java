@@ -19,7 +19,7 @@ public class SingletonConfig {
     int rozmiarPlanszyX = 400;
     int rozmiarPlanszyY = 400;
 
-    int iloscWojownikow = 10;
+    int iloscWojownikow = 30;
     int iloscApteczek = 5;
     int iloscPulapek = 5;
 
@@ -65,17 +65,19 @@ public class SingletonConfig {
             for (int j = i + 1; j < wojownikList.size(); j++) {
 
                 if (czyJestKonflikt(wojownikList.get(i),wojownikList.get(j))) {
+                    if(wojownikList.get(i).getLifeLevel()>0 && wojownikList.get(j).getLifeLevel()>0) {
+                        int powerNapastnika = wojownikList.get(i).getPower();
+                        int powerOfiary = wojownikList.get(j).getPower();
 
-                    int powerNapastnika = wojownikList.get(i).getPower();
-                    int powerOfiary = wojownikList.get(j).getPower();
+                        int aktualnyLifeLevelOfiary = wojownikList.get(j).getLifeLevel();
+                        int aktualnyLifeLevelNapastnika = wojownikList.get(j).getLifeLevel();
 
-                    int aktualnyLifeLevelOfiary = wojownikList.get(j).getLifeLevel();
-                    int aktualnyLifeLevelNapastnika = wojownikList.get(j).getLifeLevel();
-
-                    // System.out.println("Wojna" + npcList.get(i) + ":" + npcList.get(j));
-                    wojownikList.get(j).setLifeLevel(aktualnyLifeLevelOfiary - powerNapastnika);    // narazie nie ma premii dla atakującego
-                    wojownikList.get(i).setLifeLevel(aktualnyLifeLevelNapastnika - powerOfiary);
-                    //System.out.println("Wojna" + npcList.get(i) + ":" + npcList.get(j));
+                        System.out.println("Wojna" + wojownikList.get(i) + ":" + wojownikList.get(j));
+                        wojownikList.get(j).setLifeLevel(aktualnyLifeLevelOfiary - powerNapastnika);    // narazie nie ma premii dla atakującego
+                        wojownikList.get(i).setLifeLevel(aktualnyLifeLevelNapastnika - powerOfiary);
+                        System.out.println("Wojna" + wojownikList.get(i) + ":" + wojownikList.get(j));
+                        System.out.println("Tylu jescze zyje : "+wojownikList.size());
+                    }
                 }
             }
         }
@@ -92,11 +94,18 @@ public class SingletonConfig {
         }
     }
 
-    public void sprawdzKtoNieZyje() {
+    public synchronized void sprawdzKtoNieZyje() {
         wojownikList.removeIf(n -> n.getLifeLevel() <= 0);
     }
 
-
+    public synchronized void sprawdzIluZyje() {
+        int count =0;
+        for (int i = 0; i < SingletonConfig.getInstance().wojownikList.size(); i++) {
+            if (SingletonConfig.getInstance().wojownikList.get(i).getLifeLevel()>=0)
+            count++;
+        }
+        System.out.println("Aktualnie zyje :"+ count);
+    }
 
 
 }

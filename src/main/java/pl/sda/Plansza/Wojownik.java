@@ -29,24 +29,16 @@ public class Wojownik {
         return pozycjaY;
     }
 
-    public String getNazwa() {
-        return nazwa;
-    }
-
-    public int getLifeLevel() {
+    public synchronized int getLifeLevel() {
         return lifeLevel;
     }
 
-    public void setLifeLevel(int lifeLevel) {
+    public synchronized void setLifeLevel(int lifeLevel) {
         this.lifeLevel = lifeLevel;
     }
 
     public int getPower() {
         return power;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
     }
 
     public void idz(){
@@ -55,8 +47,8 @@ public class Wojownik {
         tmpX=pozycjaX;
         tmpY=pozycjaY;
 
-        randomX=getXYDirection(-1,1);
-        randomY=getXYDirection(-1,1);
+        randomX=2*getXYDirection(-1,1);
+        randomY=2*getXYDirection(-1,1);
 
         if(pozycjaX+randomX<0 || pozycjaX+randomX>borderX)
         {

@@ -14,8 +14,6 @@ public class Board extends JPanel {
 
     private final int B_WIDTH = 400;
     private final int B_HEIGHT = 400;
-    private final int INITIAL_X = -40;
-    private final int INITIAL_Y = -40;
     private final int INITIAL_DELAY = 100;
     private final int PERIOD_INTERVAL = 25;
 
@@ -41,9 +39,6 @@ public class Board extends JPanel {
 
         loadImage();
 
-        x = INITIAL_X;
-        y = INITIAL_Y;
-
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(),
                 INITIAL_DELAY, PERIOD_INTERVAL);
@@ -56,6 +51,11 @@ public class Board extends JPanel {
     }
 
     private void drawBall(Graphics g) {
+//        int count=0;
+//        for (Wojownik wojownik : SingletonConfig.getInstance().wojownikList) {
+//            x = SingletonConfig.getInstance().wojownikList.get(count++).getPozycjaX();
+//            y = SingletonConfig.getInstance().wojownikList.get(count).getPozycjaY();
+//        }
 
         for (int j = 0; j <SingletonConfig.getInstance().iloscWojownikow ; j++) {
             if(SingletonConfig.getInstance().wojownikList.get(j).getLifeLevel()>0) {
@@ -75,6 +75,7 @@ public class Board extends JPanel {
                 for (Wojownik element : SingletonConfig.getInstance().wojownikList) {
                     element.idz();
                     SingletonConfig.getInstance().sprawdzKonfliktyGraczy();
+                    SingletonConfig.getInstance().sprawdzIluZyje();
                 }
             repaint();
         }
