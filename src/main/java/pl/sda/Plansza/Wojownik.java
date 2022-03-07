@@ -35,19 +35,19 @@ public class Wojownik {
         loadImage();
     }
 
-    public synchronized int getPozycjaX() {
+    public int getPozycjaX() {
         return pozycjaX;
     }
 
-    public synchronized int getPozycjaY() {
+    public int getPozycjaY() {
         return pozycjaY;
     }
 
-    public synchronized int getLifeLevel() {
+    public  int getLifeLevel() {
         return lifeLevel;
     }
 
-    public synchronized void setLifeLevel(int lifeLevel) {
+    public  void setLifeLevel(int lifeLevel) {
         this.lifeLevel = lifeLevel;
     }
 
@@ -88,7 +88,7 @@ public class Wojownik {
 
     public void rysujWojownika(Graphics g,Object t){
 
-        g.drawImage(ball, this.pozycjaX, this.pozycjaY, (ImageObserver) t);
+        g.drawImage(ball, this.pozycjaX, this.pozycjaY,(ImageObserver) t);
     }
 
     private void loadImage() {

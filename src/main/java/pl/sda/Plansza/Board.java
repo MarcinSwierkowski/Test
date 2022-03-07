@@ -37,13 +37,17 @@ public class Board extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawWarrior(g);
+        drawAll(g);
     }
 
-    private void drawWarrior(Graphics g) {
+    private void drawAll(Graphics g) {
 
         for (Wojownik element : SingletonConfig.getInstance().wojownikList) {
             element.rysujWojownika(g,this);
+        }
+
+        for (Items element : SingletonConfig.getInstance().itemsList) {
+            element.rysujItem(g,this);
         }
             Toolkit.getDefaultToolkit().sync();
     }
@@ -57,7 +61,7 @@ public class Board extends JPanel {
                     element.idz();
                     SingletonConfig.getInstance().sprawdzKonfliktyGraczy();
                 }
-            //SingletonConfig.getInstance().sprawdzIluZyje();
+
             SingletonConfig.getInstance().sprawdzKtoNieZyje();
             System.out.println(SingletonConfig.getInstance().wojownikList.size());
             repaint();

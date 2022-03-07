@@ -57,12 +57,14 @@ public class SingletonConfig {
     }
 
 
-    public synchronized void sprawdzKonfliktyGraczy() {
+    public void sprawdzKonfliktyGraczy() {
 
         for (int i = 0; i < wojownikList.size() - 1; i++) {
             for (int j = i + 1; j < wojownikList.size(); j++) {
 
-                if (czyJestKonflikt(wojownikList.get(i),wojownikList.get(j))) {
+ //               if (czyJestKonflikt(wojownikList.get(i),wojownikList.get(j))) {
+                if (odleglosc(wojownikList.get(i),wojownikList.get(j))) {
+
                     if(wojownikList.get(i).getLifeLevel()>0 && wojownikList.get(j).getLifeLevel()>0) {
                         int powerNapastnika = wojownikList.get(i).getPower();
                         int powerOfiary = wojownikList.get(j).getPower();
@@ -81,8 +83,14 @@ public class SingletonConfig {
         }
     }
 
-    private synchronized boolean czyJestKonflikt(Wojownik wojownik, Wojownik wojownik1) {
+    private boolean czyJestKonflikt(Wojownik wojownik, Wojownik wojownik1) {
         return (wojownik.getPozycjaX()== wojownik1.getPozycjaX() && wojownik.getPozycjaY()==wojownik1.getPozycjaY());
+    }
+
+    private boolean odleglosc(Wojownik wojownik, Wojownik wojownik1) {
+        int distance = (int) Math.sqrt(((wojownik.getPozycjaX()-wojownik1.getPozycjaX())*(wojownik.getPozycjaX()-wojownik1.getPozycjaX())) + (wojownik.getPozycjaY()-wojownik1.getPozycjaY())*(wojownik.getPozycjaY()-wojownik1.getPozycjaY()));
+        if (distance <5) return true;
+        else return false;
     }
 
     public void pokarzZywych() {
@@ -92,11 +100,11 @@ public class SingletonConfig {
         }
     }
 
-    public synchronized void sprawdzKtoNieZyje() {
+    public void sprawdzKtoNieZyje() {
         wojownikList.removeIf(n -> n.getLifeLevel() <= 0);
     }
 
-    public synchronized void sprawdzIluZyje() {
+    public void sprawdzIluZyje() {
         int count =0;
         for (int i = 0; i < SingletonConfig.getInstance().wojownikList.size(); i++) {
             if (SingletonConfig.getInstance().wojownikList.get(i).getLifeLevel()>0)
