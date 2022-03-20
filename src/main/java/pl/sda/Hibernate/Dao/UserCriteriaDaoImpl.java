@@ -1,0 +1,111 @@
+package pl.sda.Hibernate.Dao;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import pl.sda.Hibernate.HibernateUtil;
+import pl.sda.Hibernate.model.*;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
+//https://www.baeldung.com/hibernate-criteria-queries
+
+public class UserCriteriaDaoImpl implements UserCriteriaDao{
+
+    private Session session;
+    private CriteriaBuilder criteriaBuilder;
+    private CriteriaQuery<User> criteriaQuery;
+
+    private Root<User> getRoot() {
+        session = HibernateUtil.getSessionFactory().openSession();
+        criteriaBuilder = session.getCriteriaBuilder();
+        criteriaQuery = criteriaBuilder.createQuery(User.class);
+        return criteriaQuery.from(User.class);
+    }
+
+    @Override
+    public List<User> findUserWhereLastNameContains(String s) {
+        Root<User> root = getRoot();
+        criteriaQuery.where(criteriaBuilder.like(root.get(User_.lastName), "%" + s + "%"));
+        Query<User> query = session.createQuery(criteriaQuery);
+        List<User> users = query.getResultList();
+        session.close();
+        return users;
+    }
+
+    @Override
+    public List<User> findAllByCountryAlias(String alias) {
+        Root<User> root = getRoot();
+        root.fetch(User_.address)
+                .fetch(Address_.country);
+
+        criteriaQuery.where(criteriaBuilder.equal(
+                root.get(User_.address)
+                        .get(Address_.country)
+                        .get(Country_.alias) ,
+                alias));
+
+        Query<User> query = session.createQuery(criteriaQuery);
+        List<User> users = query.getResultList();
+        session.close();
+        return users;
+    }
+
+    @Override
+    public List<User> findAllBornBetween(LocalDate date1, LocalDate date2) {
+        Root<User> root = getRoot();
+        criteriaQuery.where(criteriaBuilder.between(root.get(User_.birthDate), date1, date2));
+        Query<User> query = session.createQuery(criteriaQuery);
+        List<User> users = query.getResultList();
+        session.close();
+        return users;
+    }
+
+    @Override
+    public List<User> findAllWhoBoughtProduct(Product product) {
+        Root<User> root = getRoot();
+        Join<User, Order> orderJoin = root.join(User_.orders);
+        Join<Order, Product> productJoin = orderJoin.join(Order_.products);
+        criteriaQuery.where(criteriaBuilder.equal(productJoin, product));
+        Query<User> query = session.createQuery(criteriaQuery);
+        List<User> users = query.getResultList();
+        session.close();
+        return users;
+    }
+
+    @Override
+    public List<User> findAllWhoBoughtProductHql(Product product) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        Query<User> query = session.createQuery(
+                "select u from User u " +
+                        "join u.orders o " +
+                        "join o.products p " +
+                        "where p = :product",
+                User.class
+        ).setParameter("product", product);
+
+        List<User> users = query.getResultList();
+        session.close();
+        return users;
+    }
+
+    @Override
+    public List<User> findAllWithOrdersMoreExpensiveThan(double price) {
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "select distinct u from User u " +
+                                    "join u.orders o " +
+                                    "where o.price > :price",
+                            User.class
+                    ).setParameter("price", BigDecimal.valueOf(price))
+                    .getResultList();
+        }
+    }
+
+}
